@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<profile:monitoringProfile
+	xmlns:profile="http://www.ibm.com/xmlns/monitoring/11/profile"
+	profile:version="2.0">
+
+	
+
+	<!--END FLOW NODES MONITORINIG CONFIG -->
+
+</profile:monitoringProfile>
