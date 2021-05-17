@@ -216,7 +216,7 @@
                 <profile:valueQuery profile:queryText="$Body/*[local-name()='Order']//@*[local-name()='OrderNo']" />
             </profile:simpleContent>
             <profile:simpleContent profile:name="BrandMapping" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$LocalEnvironment/Destination/RouterList/DestinationData/labelName" />
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BrandMapping" />
             </profile:simpleContent>
             <profile:simpleContent profile:name="BusinessID" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
