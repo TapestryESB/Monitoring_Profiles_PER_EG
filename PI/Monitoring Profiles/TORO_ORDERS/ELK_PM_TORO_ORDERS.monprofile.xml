@@ -1,9 +1,230 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<profile:monitoringProfile
-	xmlns:profile="http://www.ibm.com/xmlns/monitoring/11/profile"
-	profile:version="2.0">
+<profile:monitoringProfile xmlns:profile="http://www.ibm.com/xmlns/monitoring/11/profile" profile:version="2.0">
 
+	<!--START FLOW NODES MONITORINIG CONFIG -->
+
+	<!--Events for MF_TORO_SFCC_ESB_ORDERCREATE.msgflow -->
+	<profile:eventSource profile:eventSourceAddress="TORO Order Input.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$LocalEnvironment/File/Name"  />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+    
+    <profile:eventSource profile:eventSourceAddress="TORO Order Input.terminal.catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$LocalEnvironment/File/Name"  />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <!-- 
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+        -->
+    </profile:eventSource>
+    
+    <profile:eventSource profile:eventSourceAddress="TORO Order Input.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$LocalEnvironment/File/Name" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+    
+    <profile:eventSource profile:eventSourceAddress="SplitOrder.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$LocalEnvironment/File/Name"  />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='orders']/*[local-name()='order']/@*[local-name()='order-no']" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="BusinessID" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+    
+    <profile:eventSource profile:eventSourceAddress="ETL_OrderExport.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$LocalEnvironment/File/Name"  />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<!--END OF Events for MF_TORO_SFCC_ESB_ORDERCREATE.msgflow -->
 	
+	<!--Events for MF_TORO_ESB_OMS_ORDERCREATE.msgflow -->
+    <profile:eventSource profile:eventSourceAddress="QL.IN.ESB_OMS.ORDERCREATE.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic"  />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='orders']/*[local-name()='order']/@*[local-name()='order-no']" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="BusinessID" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+    
+    <profile:eventSource profile:eventSourceAddress="QL.IN.ESB_OMS.ORDERCREATE.terminal.catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+        	<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='orders']/*[local-name()='order']/@*[local-name()='order-no']" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="BusinessID" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+    </profile:eventSource>
+    
+    <profile:eventSource profile:eventSourceAddress="QL.IN.ESB_OMS.ORDERCREATE.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+        	<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='orders']/*[local-name()='order']/@*[local-name()='order-no']" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="BusinessID" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+    
+    <profile:eventSource profile:eventSourceAddress="OrderCreate_CommonMapping.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_PREPARED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='Order']//@*[local-name()='OrderNo']" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="BusinessID" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+    
+    <profile:eventSource profile:eventSourceAddress="QL.OUT.ESB_OMS.ORDERCREATE.AR_INPUT.terminal.in" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <!-- <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$LocalEnvironment/File/Name" /> -->
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='Order']//@*[local-name()='OrderNo']" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="BrandMapping" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$LocalEnvironment/Destination/RouterList/DestinationData/labelName" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="BusinessID" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<!--END OF Events for MF_TORO_ESB_OMS_ORDERCREATE.msgflow -->
 
 	<!--END FLOW NODES MONITORINIG CONFIG -->
 
