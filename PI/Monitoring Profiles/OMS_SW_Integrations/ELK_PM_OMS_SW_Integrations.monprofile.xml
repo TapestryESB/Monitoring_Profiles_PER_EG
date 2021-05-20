@@ -3,7 +3,299 @@
 
 	<!--START FLOW NODES MONITORINIG CONFIG -->
 
+	<!-- Common HTTP Input node for OMS-Vertex/KOUNT-OMS -->
+	<profile:eventSource profile:eventSourceAddress="Http Input.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<!-- MF_OMS_VERTEX_Tax_Calculate -->
+				<profile:valueQuery profile:queryText="$Body/*[local-name()='Order']/@*[local-name()='OrderNo']" /> 
+			</profile:simpleContent>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<!-- MF_KOUNTToOMS_EventNotifications_SW -->
+				<profile:valueQuery profile:queryText="$Body/*[local-name()='events']/@*[local-name()='event']/@*[local-name()='key']/@*[local-name()='order_number']" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
 	
+	<profile:eventSource profile:eventSourceAddress="Http Input.terminal.catch" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="EXCEPTION" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		        <profile:applicationDataQuery>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+		<!-- 
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+        -->
+	</profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="Http Input.terminal.failure" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="EXCEPTION" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		        <profile:applicationDataQuery>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	<!-- Common HTTP Input node for OMS-Vertex/KOUNT-OMS -->
+
+	<!--Events for MF_OMS_VERTEX_Tax_Calculate.msgflow -->
+	<profile:eventSource profile:eventSourceAddress="Transformation.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_SENT" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/ID" />
+				<profile:globalTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/ID" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_CCSID" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_ENCOD" />
+			</profile:complexContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+
+	<profile:eventSource profile:eventSourceAddress="Response.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="RESPONSE_SENT" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/ID" />
+				<profile:globalTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/ID" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_CCSID" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_ENCOD" />
+			</profile:complexContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="DPRESPONSE.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="RESPONSE_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/ID" />
+				<profile:globalTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/ID" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_CCSID" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_ENCOD" />
+			</profile:complexContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+
+	<profile:eventSource profile:eventSourceAddress="DPRESPONSE.terminal.failure" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="EXCEPTION" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/ID" />
+				<profile:globalTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/ID" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_CCSID" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_ENCOD" />
+			</profile:complexContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="DPRESPONSE.terminal.noMessage"
+		profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="EXCEPTION" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/ID" />
+				<profile:globalTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/ID" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_CCSID" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_ENCOD" />
+			</profile:complexContent>
+		</profile:applicationDataQuery>
+	</profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="DPRESPONSE.terminal.warning" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="EXCEPTION" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/ID" />
+				<profile:globalTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/ID" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_CCSID" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_ENCOD" />
+			</profile:complexContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	<!--END OF Events for MF_OMS_VERTEX_Tax_Calculate.msgflow -->
+	
+	<!--Events for MF_KOUNTToOMS_EventNotifications_SW.msgflow -->
+	<profile:eventSource profile:eventSourceAddress="QL.OUT.ESB_OMS.EVENTNOTIFY.AR_INPUT.terminal.in" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_SENT" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/ID" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/ID" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_CCSID" />
+			</profile:complexContent>
+			<profile:complexContent>
+				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_ENCOD" />
+			</profile:complexContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	<!--END OF Events for MF_KOUNTToOMS_EventNotifications_SW.msgflow -->
 
 	<!--END FLOW NODES MONITORINIG CONFIG -->
 
