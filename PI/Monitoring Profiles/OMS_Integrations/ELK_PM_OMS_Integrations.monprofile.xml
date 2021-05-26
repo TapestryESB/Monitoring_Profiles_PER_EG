@@ -405,6 +405,187 @@
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
 	
+<!--APP_IVR_OMS_ORDERDETAILS.msgflow-->
+	<profile:eventSource profile:eventSourceAddress="IVROrderDetailsAPI.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/JSON/Data/orderNumber | $Root/JSON/Data/phoneNumber" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="BusinessID">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="IVROrderDetailsAPI.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/JSON/Data/orderNumber | $Root/JSON/Data/phoneNumber" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="BusinessID">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="IVROrderDetailsAPI.terminal.catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/JSON/Data/orderNumber | $Root/JSON/Data/phoneNumber" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="BusinessID">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="OMSRequestMapping.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Environment/Variables/BusinessID" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="BusinessID">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="IVR_OMS_DPRESPONSE.terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Environment/Variables/BusinessID" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="BusinessID">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="IVR_OMS_DPRESPONSE.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Environment/Variables/BusinessID" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="BusinessID">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="IVR_OMS_DPRESPONSE.terminal.noMessage" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Environment/Variables/BusinessID" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="BusinessID">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="IVRResponseMapping.Terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Environment/Variables/BusinessID" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="BusinessID">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="IVRFaultResponse.Terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Environment/Variables/BusinessID" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="BusinessID">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
 	<!--END FLOW NODES MONITORINIG CONFIG -->
 	
 </profile:monitoringProfile>	
