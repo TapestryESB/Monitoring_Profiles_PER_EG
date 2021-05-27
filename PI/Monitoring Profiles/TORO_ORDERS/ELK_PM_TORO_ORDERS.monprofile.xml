@@ -36,9 +36,7 @@
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
         </profile:applicationDataQuery>
-        <!-- 
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-        -->
     </profile:eventSource>
     
     <profile:eventSource profile:eventSourceAddress="TORO Order Input.terminal.failure" profile:enabled="true">
@@ -147,6 +145,7 @@
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
         </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
     
     <profile:eventSource profile:eventSourceAddress="QL.IN.ESB_OMS.ORDERCREATE.terminal.failure" profile:enabled="true">
@@ -191,6 +190,12 @@
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Body/*[local-name()='Order']//@*[local-name()='OrderNo']" />
             </profile:simpleContent>
+            <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variable/Brand"/>
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="Country" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variable/Country"/>
+            </profile:simpleContent>
             <profile:simpleContent profile:name="BusinessID" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
@@ -215,8 +220,11 @@
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Body/*[local-name()='Order']//@*[local-name()='OrderNo']" />
             </profile:simpleContent>
-            <profile:simpleContent profile:name="BrandMapping" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BrandMapping" />
+            <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variable/Brand"/>
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="Country" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variable/Country"/>
             </profile:simpleContent>
             <profile:simpleContent profile:name="BusinessID" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
