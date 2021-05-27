@@ -17,13 +17,20 @@
 			<profile:eventFilter profile:queryText="true()" />
 		</profile:eventPointDataQuery>
 		<profile:applicationDataQuery>
+			<!-- MF_OMS_VERTEX_Tax_Calculate -->
 			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-				<!-- MF_OMS_VERTEX_Tax_Calculate -->
 				<profile:valueQuery profile:queryText="$Body/*[local-name()='Order']/@*[local-name()='OrderNo']" /> 
 			</profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Body/*[local-name()='Order']/@*[local-name()='EnterpriseCode']" /> 
+			</profile:simpleContent>
+			
+			<!-- MF_KOUNTToOMS_EventNotifications_SW -->
 			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-				<!-- MF_KOUNTToOMS_EventNotifications_SW -->
-				<profile:valueQuery profile:queryText="$Body/*[local-name()='events']/@*[local-name()='event']/@*[local-name()='key']/@*[local-name()='order_number']" />
+				<profile:valueQuery profile:queryText="$Body/*[local-name()='events']/*[local-name()='event']/*[local-name()='key']/@*[local-name()='order_number']" />
+			</profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Body/*[local-name()='events']/*[local-name()='event']/*[local-name()='key']/@*[local-name()='site']" />
 			</profile:simpleContent>
 		</profile:applicationDataQuery>
 		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -41,14 +48,28 @@
 			</profile:eventCorrelation>
 			<profile:eventFilter profile:queryText="true()" />
 		</profile:eventPointDataQuery>
-		        <profile:applicationDataQuery>
+		<profile:applicationDataQuery>
+			<!-- MF_OMS_VERTEX_Tax_Calculate -->
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Body/*[local-name()='Order']/@*[local-name()='OrderNo']" /> 
+			</profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Body/*[local-name()='Order']/@*[local-name()='EnterpriseCode']" /> 
+			</profile:simpleContent>
+			
+			<!-- MF_KOUNTToOMS_EventNotifications_SW -->
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Body/*[local-name()='events']/*[local-name()='event']/*[local-name()='key']/@*[local-name()='order_number']" />
+			</profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Body/*[local-name()='events']/*[local-name()='event']/*[local-name()='key']/@*[local-name()='site']" />
+			</profile:simpleContent>
+			
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
-            </profile:complexContent>
+        	</profile:complexContent>
         </profile:applicationDataQuery>
-		<!-- 
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-        -->
 	</profile:eventSource>
 	
 	<profile:eventSource profile:eventSourceAddress="Http Input.terminal.failure" profile:enabled="true">
@@ -63,7 +84,23 @@
 			</profile:eventCorrelation>
 			<profile:eventFilter profile:queryText="true()" />
 		</profile:eventPointDataQuery>
-		        <profile:applicationDataQuery>
+		<profile:applicationDataQuery>
+			<!-- MF_OMS_VERTEX_Tax_Calculate -->
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Body/*[local-name()='Order']/@*[local-name()='OrderNo']" /> 
+			</profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Body/*[local-name()='Order']/@*[local-name()='EnterpriseCode']" /> 
+			</profile:simpleContent>
+			
+			<!-- MF_KOUNTToOMS_EventNotifications_SW -->
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Body/*[local-name()='events']/*[local-name()='event']/*[local-name()='key']/@*[local-name()='order_number']" />
+			</profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Body/*[local-name()='events']/*[local-name()='event']/*[local-name()='key']/@*[local-name()='site']" />
+			</profile:simpleContent>
+			
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
@@ -86,21 +123,9 @@
 			<profile:eventFilter profile:queryText="true()" />
 		</profile:eventPointDataQuery>
 		<profile:applicationDataQuery>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/ID" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_CCSID" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_ENCOD" />
-			</profile:complexContent>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
 		</profile:applicationDataQuery>
 		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
 	</profile:eventSource>
@@ -118,21 +143,9 @@
 			<profile:eventFilter profile:queryText="true()" />
 		</profile:eventPointDataQuery>
 		<profile:applicationDataQuery>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/ID" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_CCSID" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_ENCOD" />
-			</profile:complexContent>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
 		</profile:applicationDataQuery>
 		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
 	</profile:eventSource>
@@ -150,21 +163,9 @@
 			<profile:eventFilter profile:queryText="true()" />
 		</profile:eventPointDataQuery>
 		<profile:applicationDataQuery>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/ID" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_CCSID" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_ENCOD" />
-			</profile:complexContent>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
 		</profile:applicationDataQuery>
 		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
 	</profile:eventSource>
@@ -182,21 +183,9 @@
 			<profile:eventFilter profile:queryText="true()" />
 		</profile:eventPointDataQuery>
 		<profile:applicationDataQuery>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/ID" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_CCSID" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_ENCOD" />
-			</profile:complexContent>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
 		</profile:applicationDataQuery>
 		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
 	</profile:eventSource>
@@ -215,21 +204,9 @@
 			<profile:eventFilter profile:queryText="true()" />
 		</profile:eventPointDataQuery>
 		<profile:applicationDataQuery>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/ID" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_CCSID" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_ENCOD" />
-			</profile:complexContent>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
 		</profile:applicationDataQuery>
 	</profile:eventSource>
 	
@@ -246,21 +223,9 @@
 			<profile:eventFilter profile:queryText="true()" />
 		</profile:eventPointDataQuery>
 		<profile:applicationDataQuery>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/ID" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_CCSID" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_ENCOD" />
-			</profile:complexContent>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
 		</profile:applicationDataQuery>
 		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
 	</profile:eventSource>
@@ -280,18 +245,13 @@
 			<profile:eventFilter profile:queryText="true()" />
 		</profile:eventPointDataQuery>
 		<profile:applicationDataQuery>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/ID" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_CCSID" />
-			</profile:complexContent>
-			<profile:complexContent>
-				<profile:payloadQuery profile:queryText="$Root/MQRFH2/usr/PROP_ENCOD" />
-			</profile:complexContent>
+			<!-- MF_KOUNTToOMS_EventNotifications_SW -->
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Body/*[local-name()='Order']/@*[local-name()='OrderNo']" />
+			</profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Body/*[local-name()='Order']/@*[local-name()='EnterpriseCode']" />
+			</profile:simpleContent>
 		</profile:applicationDataQuery>
 		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
 	</profile:eventSource>
