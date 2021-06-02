@@ -126,6 +126,9 @@
 			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
 				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
 			</profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Environment/Variables/Brand" /> 
+			</profile:simpleContent>
 		</profile:applicationDataQuery>
 		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
 	</profile:eventSource>
@@ -145,6 +148,9 @@
 		<profile:applicationDataQuery>
 			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
 				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Environment/Variables/Brand" /> 
 			</profile:simpleContent>
 		</profile:applicationDataQuery>
 		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -166,6 +172,9 @@
 			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
 				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
 			</profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Environment/Variables/Brand" /> 
+			</profile:simpleContent>
 		</profile:applicationDataQuery>
 		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
 	</profile:eventSource>
@@ -185,6 +194,9 @@
 		<profile:applicationDataQuery>
 			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
 				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Environment/Variables/Brand" /> 
 			</profile:simpleContent>
 		</profile:applicationDataQuery>
 		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -207,6 +219,9 @@
 			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
 				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
 			</profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Environment/Variables/Brand" /> 
+			</profile:simpleContent>
 		</profile:applicationDataQuery>
 	</profile:eventSource>
 	
@@ -225,6 +240,9 @@
 		<profile:applicationDataQuery>
 			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
 				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Environment/Variables/Brand" /> 
 			</profile:simpleContent>
 		</profile:applicationDataQuery>
 		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
