@@ -75,6 +75,12 @@
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Body/*[local-name()='orders']/*[local-name()='order']/@*[local-name()='order-no']" />
             </profile:simpleContent>
+            <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/Brand" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="Country" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/Country" />
+            </profile:simpleContent>
             <profile:simpleContent profile:name="BusinessID" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
@@ -96,6 +102,35 @@
         </profile:eventPointDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
+    
+        <profile:eventSource profile:eventSourceAddress="QL.IN.DIGITALPRINTING.terminal.in" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$LocalEnvironment/File/Name"  />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='orders']/*[local-name()='order']/@*[local-name()='order-no']" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/Brand" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="Country" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/Country" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="BusinessID" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
 	<!--END OF Events for MF_TORO_SFCC_ESB_ORDERCREATE.msgflow -->
 	
 	<!--Events for MF_TORO_ESB_OMS_ORDERCREATE.msgflow -->
@@ -114,6 +149,12 @@
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Body/*[local-name()='orders']/*[local-name()='order']/@*[local-name()='order-no']" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/Brand" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="Country" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/Country" />
             </profile:simpleContent>
             <profile:simpleContent profile:name="BusinessID" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
@@ -137,6 +178,12 @@
         <profile:applicationDataQuery>
         	<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Body/*[local-name()='orders']/*[local-name()='order']/@*[local-name()='order-no']" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/Brand" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="Country" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/Country" />
             </profile:simpleContent>
             <profile:simpleContent profile:name="BusinessID" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
@@ -163,6 +210,12 @@
         <profile:applicationDataQuery>
         	<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Body/*[local-name()='orders']/*[local-name()='order']/@*[local-name()='order-no']" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/Brand" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="Country" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/Country" />
             </profile:simpleContent>
             <profile:simpleContent profile:name="BusinessID" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
