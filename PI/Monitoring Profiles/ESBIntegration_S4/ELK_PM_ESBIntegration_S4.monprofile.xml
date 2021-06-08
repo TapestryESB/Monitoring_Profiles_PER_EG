@@ -617,7 +617,224 @@
     </profile:eventSource>
 	
 	
-	<!-- Events for APP_OMS_S4_ASN_SW -->
+
+	<!-- Events for APP_OMS_S4_ASN -->
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS_S4.ASN.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		<profile:applicationDataQuery>	
+            <profile:simpleContent profile:name="OrderNo">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS_S4.ASN.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>																	
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS_S4.ASN.terminal.catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>																	
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS_S4.ASN.CE.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		<profile:applicationDataQuery>	
+            <profile:simpleContent profile:name="OrderNo">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS_S4.ASN.CE.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>																	
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS_S4.ASN.CE.terminal.catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>																	
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS_S4.ASN.CONA.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		<profile:applicationDataQuery>	
+            <profile:simpleContent profile:name="OrderNo">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS_S4.ASN.CONA.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>																	
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS_S4.ASN.CONA.terminal.catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>																	
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
 	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS_S4.ASN.SW.terminal.out" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -625,19 +842,46 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/ID" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		<profile:applicationDataQuery>	
+            <profile:simpleContent profile:name="OrderNo">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS_S4.ASN.SW.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>																	
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
                 <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="BusinessID" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" />
             </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-	
 	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS_S4.ASN.SW.terminal.catch" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -645,14 +889,17 @@
             </profile:eventIdentity>																	
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/ID"  />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
                 <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="BusinessID" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
@@ -660,72 +907,9 @@
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-	
-	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS_S4.ASN.SW.terminal.failure" profile:enabled="true">
-        <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="EXCEPTION" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/ID" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="BusinessID" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
-            </profile:simpleContent>
-            <profile:complexContent profile:name="Exception">
-                <profile:payloadQuery profile:queryText="$ExceptionList" />
-            </profile:complexContent>
-        </profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-	
-	<profile:eventSource profile:eventSourceAddress="RequestToS4.terminal.out" profile:enabled="true">
-        <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="REQUEST_SENT" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="BusinessID" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
-            </profile:simpleContent>
-        </profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-	
-	<profile:eventSource profile:eventSourceAddress="SAP Request.terminal.out" profile:enabled="true">
-        <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="RESPONSE_RECEIVED" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic"  />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="BusinessID" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
-            </profile:simpleContent>
-        </profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-	
-	<!-- APP_OMS_TO_S4_NON_DC_FULFILLMENT_NOTIFICATION_SW Events -->
-	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS.ESB.NONDC.FULFILL.NOTIFY_SW_S4.terminal.out" profile:enabled="true">
+	<!-- END of Events for APP_OMS_S4_ASN -->
+	<!-- Events for APP_OMS_TO_S4_NON_DC_FULFILLMENT_NOTIFICATION -->
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS.ESB.NONDC.FULFILL.SHIPMENTNOTIFY.terminal.out" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
                 <profile:eventName profile:literal="REQUEST_RECEIVED" />
@@ -738,53 +922,300 @@
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
 		<profile:applicationDataQuery>	
-            <profile:complexContent profile:name="MQMDHeader">
-                <profile:payloadQuery profile:queryText="$Root/MQMD" />
+            <profile:simpleContent profile:name="OrderNo">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS.ESB.NONDC.FULFILL.SHIPMENTNOTIFY.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>																	
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-	<profile:eventSource profile:eventSourceAddress="Filter.terminal.false" profile:enabled="true">
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS.ESB.NONDC.FULFILL.SHIPMENTNOTIFY.terminal.catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>																	
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Route.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/MQRFH2/usr/BusinessID | $Root/MQRFH2/usr/OrderNo" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID | $Root/MQRFH2/usr/OrderNo" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Environment/Variables/Brand" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS.ESB.NONDC.FULFILL.NOTIFY_CE_S4.terminal.out" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
                 <profile:eventName profile:literal="REQUEST_RECEIVED" />
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:queryText="$Root/MQRFH2/usr/BusinessID" profile:sourceOfId="query" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
                 <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>	
-            <profile:complexContent profile:name="MQMDHeader">
-                <profile:payloadQuery profile:queryText="$Root/MQMD" />
-            </profile:complexContent>
-            <profile:complexContent profile:name="MQRFH2Header">
-                <profile:payloadQuery profile:queryText="$Root/MQRFH2" />
+		<profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS.ESB.NONDC.FULFILL.NOTIFY_CE_S4.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>																	
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-	<profile:eventSource profile:eventSourceAddress="Filter.terminal.true" profile:enabled="true">
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS.ESB.NONDC.FULFILL.NOTIFY_CE_S4.terminal.catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>																	
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS.ESB.NONDC.FULFILL.NOTIFY_CONA_S4.terminal.out" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
                 <profile:eventName profile:literal="REQUEST_RECEIVED" />
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:queryText="$Root/MQRFH2/usr/BusinessID" profile:sourceOfId="query" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
                 <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>	
-            <profile:complexContent profile:name="MQMDHeader">
-                <profile:payloadQuery profile:queryText="$Root/MQMD" />
+		<profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS.ESB.NONDC.FULFILL.NOTIFY_CONA_S4.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>																	
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
-            <profile:complexContent profile:name="MQRFH2Header">
-                <profile:payloadQuery profile:queryText="$Root/MQRFH2" />
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS.ESB.NONDC.FULFILL.NOTIFY_CONA_S4.terminal.catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>																	
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS.ESB.NONDC.FULFILL.NOTIFY_SW_S4.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>																	
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS.ESB.NONDC.FULFILL.NOTIFY_SW_S4.terminal.catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>																	
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS.ESB.NONDC.FULFILL.NOTIFY_SW_S4.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" profile:sourceOfId="query" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['OrderReleaseList'=local-name()]/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -795,40 +1226,18 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:queryText="$Root/MQRFH2/usr/BusinessID" profile:sourceOfId="query" />
+                <profile:parentTransactionId profile:queryText="$Root/MQRFH2/usr/BusinessID | $Root/MQRFH2/usr/OrderNo" profile:sourceOfId="query" />
                 <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>	
-            <profile:complexContent profile:name="MQMDHeader">
-                <profile:payloadQuery profile:queryText="$Root/MQMD" />
-            </profile:complexContent>
-            <profile:complexContent profile:name="MQRFH2Header">
-                <profile:payloadQuery profile:queryText="$Root/MQRFH2" />
-            </profile:complexContent>
-        </profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-	<profile:eventSource profile:eventSourceAddress="CONAReqTOS4.terminal.out" profile:enabled="true">
-        <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="REQUEST_SENT" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:queryText="$Root/MQRFH2/usr/BusinessID" profile:sourceOfId="query" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>	
-            <profile:complexContent profile:name="MQMDHeader">
-                <profile:payloadQuery profile:queryText="$Root/MQMD" />
-            </profile:complexContent>
-            <profile:complexContent profile:name="MQRFH2Header">
-                <profile:payloadQuery profile:queryText="$Root/MQRFH2" />
-            </profile:complexContent>
+            <profile:simpleContent profile:name="OrderNo">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID | $Root/MQRFH2/usr/OrderNo" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Environment/Variables/Brand" />
+            </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -839,18 +1248,18 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:queryText="$Root/MQRFH2/usr/BusinessID" profile:sourceOfId="query" />
+                <profile:parentTransactionId profile:queryText="$Root/MQRFH2/usr/BusinessID | $Root/MQRFH2/usr/OrderNo" profile:sourceOfId="query" />
                 <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>	
-            <profile:complexContent profile:name="MQMDHeader">
-                <profile:payloadQuery profile:queryText="$Root/MQMD" />
-            </profile:complexContent>
-            <profile:complexContent profile:name="MQRFH2Header">
-                <profile:payloadQuery profile:queryText="$Root/MQRFH2" />
-            </profile:complexContent>
+            <profile:simpleContent profile:name="OrderNo">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID | $Root/MQRFH2/usr/OrderNo" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Environment/Variables/Brand" />
+            </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -861,23 +1270,23 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:queryText="$Root/MQRFH2/usr/BusinessID" profile:sourceOfId="query" />
+                <profile:parentTransactionId profile:queryText="$Root/MQRFH2/usr/BusinessID | $Root/MQRFH2/usr/OrderNo" profile:sourceOfId="query" />
                 <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:complexContent profile:name="MQMDHeader">
-                <profile:payloadQuery profile:queryText="$Root/MQMD" />
-            </profile:complexContent>
-            <profile:complexContent profile:name="MQRFH2Header">
-                <profile:payloadQuery profile:queryText="$Root/MQRFH2" />
-            </profile:complexContent>
+            <profile:simpleContent profile:name="OrderNo">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID | $Root/MQRFH2/usr/OrderNo" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand">
+                <profile:valueQuery profile:queryText="$Environment/Variables/Brand" />
+            </profile:simpleContent>
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-	
-</profile:monitoringProfile>    
+	<!-- END of Events for APP_OMS_TO_S4_NON_DC_FULFILLMENT_NOTIFICATION -->
+</profile:monitoringProfile>  
