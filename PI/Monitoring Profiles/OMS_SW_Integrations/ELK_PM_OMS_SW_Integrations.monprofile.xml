@@ -776,6 +776,704 @@
     
     <!-- End of OMS To ER Store Filled Orders events -->
 
+	<!-- START of Events for APP_JAX_PO_INTEGRATION_BRIDGE -->
+		<profile:eventSource profile:eventSourceAddress="HTTPS Input_Bridge.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceBridge'=local-name()]/*['Invoice'=local-name()]/@*['OrderNbr'=local-name()]" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+			<profile:eventSource profile:eventSourceAddress="HTTP Input_Bridge.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceBridge'=local-name()]/*['Invoice'=local-name()]/@*['OrderNbr'=local-name()]" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="Init_Bridge.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_SENT" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="HTTP Request.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="RESPONSE_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	
+	<profile:eventSource profile:eventSourceAddress="HTTP Request.terminal.error" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="EXCEPTION" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+        	</profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="HTTP Request.terminal.failure" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="EXCEPTION" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+
+	<!-- END of Events for APP_JAX_PO_INTEGRATION_BRIDGE -->
+	
+	<!-- START of Events for APP_JAX_PO_INTEGRATION_RETAILRAR -->
+		<profile:eventSource profile:eventSourceAddress="HTTPS Input_RetailRAR.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceBridge'=local-name()]/*['Invoice'=local-name()]/@*['OrderNbr'=local-name()]" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+			<profile:eventSource profile:eventSourceAddress="HTTP Input_RetailRAR.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceBridge'=local-name()]/*['Invoice'=local-name()]/@*['OrderNbr'=local-name()]" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="Init_RetailRAR.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_SENT" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<!-- END of Events for APP_JAX_PO_INTEGRATION_RETAILRAR -->
+	
+	<!-- START of Events for APP_JAX_PO_INTEGRATION_RETAILRETURNAUTHORIZATION -->
+		<profile:eventSource profile:eventSourceAddress="HTTPS Input_RetailReturnAuthorization.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceBridge'=local-name()]/*['Invoice'=local-name()]/@*['OrderNbr'=local-name()]" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+			<profile:eventSource profile:eventSourceAddress="HTTP Input_RetailReturnAuthorization.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceBridge'=local-name()]/*['Invoice'=local-name()]/@*['OrderNbr'=local-name()]" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="Init_RetailReturnAuthorization.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_SENT" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<!-- END of Events for APP_JAX_PO_INTEGRATION_RETAILRETURNAUTHORIZATION -->
+	
+	<!-- START of Events for APP_JAX_PO_INTEGRATION_VENDORMASTER -->
+		<profile:eventSource profile:eventSourceAddress="HTTPS Input_VendorMaster.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceBridge'=local-name()]/*['Invoice'=local-name()]/@*['OrderNbr'=local-name()]" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+			<profile:eventSource profile:eventSourceAddress="HTTP Input_VendorMaster.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceBridge'=local-name()]/*['Invoice'=local-name()]/@*['OrderNbr'=local-name()]" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="Init_VendorMaster.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_SENT" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<!-- END of Events for APP_JAX_PO_INTEGRATION_VENDORMASTER -->
+	
+	<!-- START of Events for APP_JAX_PO_INTEGRATION_WHOLESALERETURNAUTHORIZATION -->
+		<profile:eventSource profile:eventSourceAddress="HTTPS Input_WholeSaleReturnAuthorization.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceBridge'=local-name()]/*['Invoice'=local-name()]/@*['OrderNbr'=local-name()]" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+			<profile:eventSource profile:eventSourceAddress="HTTP Input_WholeSaleReturnAuthorization.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceBridge'=local-name()]/*['Invoice'=local-name()]/@*['OrderNbr'=local-name()]" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="Init_WholeSaleReturnAuthorization.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_SENT" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<!-- END of Events for APP_JAX_PO_INTEGRATION_WHOLESALERETURNAUTHORIZATION -->
+	
+	<!-- START of Events for APP_JAX_PO_INTEGRATION_CUSTOMERMASTER -->
+		<profile:eventSource profile:eventSourceAddress="HTTPS Input_CustomerMaster.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceBridge'=local-name()]/*['Invoice'=local-name()]/@*['OrderNbr'=local-name()]" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+			<profile:eventSource profile:eventSourceAddress="HTTP Input_CustomerMaster.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceBridge'=local-name()]/*['Invoice'=local-name()]/@*['OrderNbr'=local-name()]" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="Init_CustomerMaster.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_SENT" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<!-- END of Events for APP_JAX_PO_INTEGRATION_CUSTOMERMASTER -->
+	
+	<!-- START of Events for APP_JAX_PO_INTEGRATION_INBOUNDDELIVERY -->
+		<profile:eventSource profile:eventSourceAddress="HTTPS Input_InboundDelivery.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceBridge'=local-name()]/*['Invoice'=local-name()]/@*['OrderNbr'=local-name()]" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+			<profile:eventSource profile:eventSourceAddress="HTTP Input_InboundDelivery.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceBridge'=local-name()]/*['Invoice'=local-name()]/@*['OrderNbr'=local-name()]" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="Init_InboundDelivery.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_SENT" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<!-- END of Events for APP_JAX_PO_INTEGRATION_INBOUNDDELIVERY -->
+	
+	<!-- START of Events for APP_JAX_PO_INTEGRATION_INVENTORYSYNC -->
+		<profile:eventSource profile:eventSourceAddress="HTTPS Input_InventorySync.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceBridge'=local-name()]/*['Invoice'=local-name()]/@*['OrderNbr'=local-name()]" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+			<profile:eventSource profile:eventSourceAddress="HTTP Input_InventorySync.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceBridge'=local-name()]/*['Invoice'=local-name()]/@*['OrderNbr'=local-name()]" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="Init_InventorySync.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_SENT" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<!-- END of Events for APP_JAX_PO_INTEGRATION_INVENTORYSYNC -->
+	
+	<!-- START of Events for APP_JAX_PO_INTEGRATION_ORDER -->
+		<profile:eventSource profile:eventSourceAddress="HTTPS Input_Order.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceBridge'=local-name()]/*['Invoice'=local-name()]/@*['OrderNbr'=local-name()]" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+			<profile:eventSource profile:eventSourceAddress="HTTP Input_Order.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceBridge'=local-name()]/*['Invoice'=local-name()]/@*['OrderNbr'=local-name()]" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="Init_Order.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_SENT" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<!-- END of Events for APP_JAX_PO_INTEGRATION_ORDER -->
+	
+	<!-- START of Events for APP_JAX_PO_INTEGRATION_PICTICKETSYNC -->
+		<profile:eventSource profile:eventSourceAddress="HTTPS Input_PicTicketSync.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceBridge'=local-name()]/*['Invoice'=local-name()]/@*['OrderNbr'=local-name()]" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+			<profile:eventSource profile:eventSourceAddress="HTTP Input_PicTicketSync.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceBridge'=local-name()]/*['Invoice'=local-name()]/@*['OrderNbr'=local-name()]" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="Init_PicTicketSync.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_SENT" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<!-- END of Events for APP_JAX_PO_INTEGRATION_PICTICKETSYNC -->
+	
 	<!--END FLOW NODES MONITORINIG CONFIG -->
 	
 
