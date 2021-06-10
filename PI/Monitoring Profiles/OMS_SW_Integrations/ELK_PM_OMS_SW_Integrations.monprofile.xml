@@ -1677,6 +1677,104 @@
 	
 	<!-- End of Events for MF_OMS_ER_FilledOrders_SW_CONA.msgflow -->
 	
+		<!-- Events for APP_OMS_ReconNet -->
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS_RECONNET.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='InvoiceDetail']/*[local-name()='InvoiceHeader']/@*[local-name()='OrderNo']" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='InvoiceDetail']/*[local-name()='InvoiceHeader']/@*[local-name()='EnterpriseCode']" />
+			</profile:simpleContent>	
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS_RECONNET.terminal.catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>																	
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic"  />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='InvoiceDetail']/*[local-name()='InvoiceHeader']/@*[local-name()='OrderNo']" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='InvoiceDetail']/*[local-name()='InvoiceHeader']/@*[local-name()='EnterpriseCode']" />
+			</profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS_RECONNET.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='InvoiceDetail']/*[local-name()='InvoiceHeader']/@*[local-name()='OrderNo']" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='InvoiceDetail']/*[local-name()='InvoiceHeader']/@*[local-name()='EnterpriseCode']" />
+			</profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="ReconnetMapping.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/Brand" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	
+	<!-- END of Events for APP_OMS_ReconNet -->
+	
 	<!--END FLOW NODES MONITORINIG CONFIG -->
 	
 
