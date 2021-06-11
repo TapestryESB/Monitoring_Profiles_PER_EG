@@ -15,8 +15,8 @@
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+              <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
             <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
@@ -41,12 +41,10 @@
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
-        </profile:applicationDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+              <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
-        <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+            <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
@@ -69,12 +67,10 @@
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
-        </profile:applicationDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+              <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
-        <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+            <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
@@ -87,14 +83,17 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/ID"  />
+                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/BusinessID"  />
                 <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderId" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+        <profile:applicationDataQuery>         
+              <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -113,11 +112,11 @@
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+          <profile:applicationDataQuery>         
+              <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
-        <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
@@ -136,16 +135,14 @@
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
+         <profile:applicationDataQuery>
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
-        </profile:applicationDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
-        <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
@@ -164,16 +161,14 @@
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
+         <profile:applicationDataQuery>
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
-        </profile:applicationDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
-        <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
@@ -194,7 +189,10 @@
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -212,8 +210,11 @@
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -232,10 +233,10 @@
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
-        <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
@@ -258,12 +259,10 @@
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
-        </profile:applicationDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
-                    <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
@@ -282,16 +281,14 @@
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
+         <profile:applicationDataQuery>
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
-        </profile:applicationDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
-         <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
@@ -311,8 +308,11 @@
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -330,8 +330,11 @@
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -350,10 +353,10 @@
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
-        <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
@@ -372,16 +375,14 @@
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
+         <profile:applicationDataQuery>
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
-        </profile:applicationDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
-            <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
@@ -404,12 +405,10 @@
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
-        </profile:applicationDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
-             <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
@@ -430,7 +429,10 @@
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -448,8 +450,11 @@
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+          <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -468,10 +473,10 @@
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
-            <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
@@ -490,16 +495,14 @@
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
+       <profile:applicationDataQuery>
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
-        </profile:applicationDataQuery>
-        <profile:applicationDataQuery>
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
-             <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
@@ -518,16 +521,14 @@
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
+     <profile:applicationDataQuery>
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
-        </profile:applicationDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
-             <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
@@ -548,7 +549,10 @@
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -566,8 +570,11 @@
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
