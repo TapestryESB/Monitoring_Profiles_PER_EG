@@ -2081,7 +2081,7 @@
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
 
-	<!--END FLOW NODES MONITORINIG CONFIG -->
+	<!--END FLOW NODES MONITORINIG CONFIG  -->
 	
 
 </profile:monitoringProfile>
