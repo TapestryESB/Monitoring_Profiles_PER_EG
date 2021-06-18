@@ -855,10 +855,10 @@
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Body/*[local-name()='OnlineOrderIngestion']/*[local-name()='HeaderOrder']/*@[local-name()='order_no']" />
+                <profile:valueQuery profile:queryText="$Root/DFDL/OnlineOrderIngestion/HeaderOrder/order_no" />
             </profile:simpleContent>
             <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Body/*[local-name()='OnlineOrderIngestion']/*[local-name()='HeaderOrder']/*@[local-name()='enterprise_code']" />
+                <profile:valueQuery profile:queryText="$Root/DFDL/OnlineOrderIngestion/HeaderOrder/enterprise_code" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
