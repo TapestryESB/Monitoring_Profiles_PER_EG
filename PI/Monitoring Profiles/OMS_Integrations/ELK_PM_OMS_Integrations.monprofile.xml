@@ -184,7 +184,7 @@
 		</profile:eventPointDataQuery>
 		<profile:applicationDataQuery>
 			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables.OrderNo" />
+                <profile:valueQuery profile:queryText="$Environment/Variables/OrderNo" />
             </profile:simpleContent>
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/OrderRelease/EnterpriseCode" />
