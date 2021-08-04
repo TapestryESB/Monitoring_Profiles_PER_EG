@@ -2177,6 +2177,30 @@
     </profile:eventSource>
 
 <!-- End of Events for OMS_EGCFulfillment_CONA_CASHSTAR.msgflow -->
+	<!-- Start Events for NarvarOrderSatusUpdate.msgflow -->
+	<profile:eventSource profile:eventSourceAddress="TAPESTRY.OMS.NARVAR.ORDERSTATUS.UPDATES.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId  profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/ID" />
+                <profile:globalTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Order'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+        <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<!-- End Events for NarvarOrderSatusUpdate.msgflow -->
 	<!--END FLOW NODES MONITORINIG CONFIG -->
 
 </profile:monitoringProfile>
