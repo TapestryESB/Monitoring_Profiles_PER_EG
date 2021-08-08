@@ -2201,6 +2201,176 @@
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
 	<!-- End Events for NarvarOrderSatusUpdate.msgflow -->
+	<!-- Start Events for Jax Pix Pub -->
+    <profile:eventSource profile:eventSourceAddress="Flow Order.terminal.first" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/ID" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/PIXBridge/PIX/TransactionNumber" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="Warehouse" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/PIXBridge/PIX/PIXFields/Warehouse" /> 
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Flow Order.terminal.second" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/ID" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/PIXBridge/PIX/TransactionNumber" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="Warehouse" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/PIXBridge/PIX/PIXFields/Warehouse" /> 
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+    <!-- End Events for Jax Pix Pub -->
+    
+    <!-- Start Events for OMSQueueToHDB.msgflow -->
+	<profile:eventSource profile:eventSourceAddress="TAPESTRY.OMS.HDW.ORDERINGESTION.UPDATES.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId  profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/ID" />
+                <profile:globalTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Order'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+        <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="TAPESTRY.OMS.HDW.ORDERINGESTION.UPDATES.terminal.failure" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="EXCEPTION" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Order'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="TAPESTRY.OMS.HDW.ORDERINGESTION.UPDATES.terminal.catch" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="EXCEPTION" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Order'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="route.terminal.out1" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variables/bizId" /> 
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variables/Brand" /> 
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="insert_xml.terminal.in" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variables/bizId" /> 
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variables/Brand" /> 
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<!-- END Events for OMSQueueToHDB.msgflow -->
+
 	<!--END FLOW NODES MONITORINIG CONFIG -->
 
 </profile:monitoringProfile>

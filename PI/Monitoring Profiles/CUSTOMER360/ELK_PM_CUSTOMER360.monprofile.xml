@@ -16,19 +16,13 @@
 			<profile:eventFilter profile:queryText="true()" />
 		</profile:eventPointDataQuery>
 		<profile:applicationDataQuery>
-		
-		<!--  MF_LSS_SFMC_TriggerEmail.msgflow -->
-
 			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-				<profile:valueQuery profile:queryText="$Message/JSON/Data/EmailPayload/Data/EMAILADDRESS" />
+				<profile:valueQuery profile:queryText="$Body/JSON/Data/EmailPayload/Data/EMAILADDRESS" />
 			</profile:simpleContent>
-			<profile:simpleContent profile:name="MembershipID" profile:dataType="string" profile:targetNamespace="">
-				<profile:valueQuery profile:queryText="$Message/JSON/Data/EmailPayload/Data/MEMBERSHIP_ID" />
-			</profile:simpleContent>
-			
 		</profile:applicationDataQuery>
 		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
 	</profile:eventSource>
+	
 	
    <profile:eventSource profile:eventSourceAddress="HTTP Input.terminal.catch" profile:enabled="true">
         <profile:eventPointDataQuery>
