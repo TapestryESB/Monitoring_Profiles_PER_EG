@@ -109,10 +109,13 @@
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
 			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-				<profile:valueQuery profile:queryText="$Root/XMLNSC/InvoiceBridge/Invoice/InvoiceHeaderFields/CustomerPONbr" />
+				<profile:valueQuery profile:queryText="$Environment/Variables/OrderNo" />
 			</profile:simpleContent>
 			<profile:simpleContent profile:name="Warehouse" profile:dataType="string" profile:targetNamespace="">
 				<profile:valueQuery profile:queryText="$Root/XMLNSC/InvoiceBridge/Invoice/Warehouse" /> 
+			</profile:simpleContent>
+			<profile:simpleContent profile:name="MessgeType" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Environment/Variables/MessgeType" />
 			</profile:simpleContent>
 			<profile:simpleContent profile:name="PickticketSuffix" profile:dataType="string" profile:targetNamespace="">
 				<profile:valueQuery profile:queryText="$Root/XMLNSC/InvoiceBridge/Invoice/PickticketNbr/@PickticketSuffix" /> 
@@ -133,7 +136,13 @@
 		</profile:eventPointDataQuery>
 		<profile:applicationDataQuery>
 			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-				<profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" /> 
+				<profile:valueQuery profile:queryText="$Environment/Variables/OrderNo" />
+			</profile:simpleContent>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['ShipmentLines'=local-name()]/@*['OrderNo'=local-name()]" /> 
+			</profile:simpleContent>
+			<profile:simpleContent profile:name="MessgeType" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Environment/Variables/MessgeType" />
 			</profile:simpleContent>
 		</profile:applicationDataQuery>
 		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -151,7 +160,13 @@
 		</profile:eventPointDataQuery>
 		<profile:applicationDataQuery>
 			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-				<profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" /> 
+				<profile:valueQuery profile:queryText="$Environment/Variables/OrderNo" />
+			</profile:simpleContent>
+		<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['ShipmentLines'=local-name()]/@*['OrderNo'=local-name()]" /> 
+			</profile:simpleContent>
+			<profile:simpleContent profile:name="MessgeType" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Environment/Variables/MessgeType" />
 			</profile:simpleContent>
 		</profile:applicationDataQuery>
 		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -2050,7 +2065,7 @@
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-
+    
     <profile:eventSource profile:eventSourceAddress="QL.IN.ESB_OMS.CONACASHSTAR_EGCFULFILLMENT.terminal.catch" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -2078,7 +2093,7 @@
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-
+    
     <profile:eventSource profile:eventSourceAddress="QL.IN.ESB_OMS.CONACASHSTAR_EGCFULFILLMENT.terminal.failure" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -2106,7 +2121,7 @@
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-
+    
     <profile:eventSource profile:eventSourceAddress="cashstarRequest.terminal.out" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -2129,7 +2144,7 @@
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-
+    
     <profile:eventSource profile:eventSourceAddress="GetMsgFromDP.terminal.out" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -2152,7 +2167,7 @@
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-
+	    
     <profile:eventSource profile:eventSourceAddress="QL.OUT.ESB_OMS.CONACASHSTAR.AR_INPUT.terminal.in" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -2175,7 +2190,7 @@
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-
+	
 <!-- End of Events for OMS_EGCFulfillment_CONA_CASHSTAR.msgflow -->
 	<!-- Start Events for NarvarOrderSatusUpdate.msgflow -->
 	<profile:eventSource profile:eventSourceAddress="TAPESTRY.OMS.NARVAR.ORDERSTATUS.UPDATES.terminal.out" profile:enabled="true">
@@ -2200,6 +2215,59 @@
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="TAPESTRY.OMS.NARVAR.ORDERSTATUS.UPDATES.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId  profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/ID" />
+                <profile:globalTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Order'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="TAPESTRY.OMS.NARVAR.ORDERSTATUS.UPDATES.terminal.catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId  profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/BusinessID" />
+                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/ID" />
+                <profile:globalTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/HTTP_URL" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Order'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+			</profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+			</profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	
 	<!-- End Events for NarvarOrderSatusUpdate.msgflow -->
 	<!-- Start Events for Jax Pix Pub -->
     <profile:eventSource profile:eventSourceAddress="Flow Order.terminal.first" profile:enabled="true">
@@ -2247,8 +2315,7 @@
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
     <!-- End Events for Jax Pix Pub -->
-    
-    <!-- Start Events for OMSQueueToHDB.msgflow -->
+    	<!-- Start Events for OMSQueueToHDB.msgflow -->
 	<profile:eventSource profile:eventSourceAddress="TAPESTRY.OMS.HDW.ORDERINGESTION.UPDATES.terminal.out" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -2370,7 +2437,143 @@
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
 	<!-- END Events for OMSQueueToHDB.msgflow -->
+	
+	<!-- Begin of Events for PGC activation to OMS -->
+	<profile:eventSource profile:eventSourceAddress="QL.OUT.ESB_OMS.SHIPCONFIRM_PGC.SUB.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_RECEIVED" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Environment/Variable/OrderNo" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Request_PGC_Activation.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_SENT" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Environment/Variable/OrderNo" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="HTTP_Request_PGC.OutTerminal" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_SENT" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Environment/Variable/OrderNo" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Response_PGC_Activation.terminal.out" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_SENT" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Environment/Variable/OrderNo" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Response_PGC_Activation.terminal.out1" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="REQUEST_SENT" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Environment/Variable/OrderNo" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.OUT.ESB_OMS.SHIPCONFIRM_PGC.SUB.terminal.catch" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="EXCEPTION" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Environment/Variable/OrderNo" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.OUT.ESB_OMS.SHIPCONFIRM_PGC.SUB.terminal.failure" profile:enabled="true">
+		<profile:eventPointDataQuery>
+			<profile:eventIdentity>
+				<profile:eventName profile:literal="EXCEPTION" />
+			</profile:eventIdentity>
+			<profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="automatic" />
+				<profile:globalTransactionId profile:sourceOfId="automatic" />
+			</profile:eventCorrelation>
+			<profile:eventFilter profile:queryText="true()" />
+		</profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Environment/Variable/OrderNo" />
+			</profile:simpleContent>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	</profile:eventSource>
+	<!-- end of Events for PGC activation to OMS -->
 
-	<!--END FLOW NODES MONITORINIG CONFIG -->
+<!--END FLOW NODES MONITORINIG CONFIG -->
 
 </profile:monitoringProfile>
