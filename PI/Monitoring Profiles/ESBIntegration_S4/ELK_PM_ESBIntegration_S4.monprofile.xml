@@ -1671,7 +1671,7 @@
             </profile:eventIdentity>																	
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/XMLNSC/*['InvoiceDetail'=local-name()]/*['InvoiceHeader'=local-name()]/@*['OrderNo'=local-name()]]"  />
+                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/XMLNSC/*['InvoiceDetail'=local-name()]/*['InvoiceHeader'=local-name()]/@*['OrderNo'=local-name()]"  />
                 <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
@@ -1731,7 +1731,7 @@
                 <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
             <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/EnterpriseCode]" />
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/EnterpriseCode" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -1753,7 +1753,7 @@
                 <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
             <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/EnterpriseCode]" />
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/EnterpriseCode" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
