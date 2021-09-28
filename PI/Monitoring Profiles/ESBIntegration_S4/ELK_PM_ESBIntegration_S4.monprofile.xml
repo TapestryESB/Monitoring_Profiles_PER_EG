@@ -1649,17 +1649,20 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/XMLNSC/*['InvoiceDetail'=local-name()]/*['InvoiceHeader'=local-name()]/@*['OrderNo'=local-name()]" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
                 <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceDetail'=local-name()]/*['InvoiceHeader'=local-name()]/@*['OrderNo'=local-name()]" />
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='InvoiceDetail']/*[local-name()='InvoiceHeader']/@*[local-name()='OrderNo']" />
             </profile:simpleContent>
             <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceDetail'=local-name()]/*['InvoiceHeader'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='InvoiceDetail']/*[local-name()='InvoiceHeader']/@*[local-name()='EnterpriseCode']" />
+            </profile:simpleContent>
+                <profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='InvoiceDetail']/*[local-name()='InvoiceHeader']/@*[local-name()='DateInvoiced']" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -1668,20 +1671,23 @@
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
                 <profile:eventName profile:literal="EXCEPTION" />
-            </profile:eventIdentity>																	
+            </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/XMLNSC/*['InvoiceDetail'=local-name()]/*['InvoiceHeader'=local-name()]/@*['OrderNo'=local-name()]"  />
+                <profile:parentTransactionId profile:sourceOfId="automatic"  />
                 <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceDetail'=local-name()]/*['InvoiceHeader'=local-name()]/@*['OrderNo'=local-name()]" />
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='InvoiceDetail']/*[local-name()='InvoiceHeader']/@*[local-name()='OrderNo']" />
             </profile:simpleContent>
             <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceDetail'=local-name()]/*['InvoiceHeader'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='InvoiceDetail']/*[local-name()='InvoiceHeader']/@*[local-name()='EnterpriseCode']" />
+            </profile:simpleContent>
+                <profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='InvoiceDetail']/*[local-name()='InvoiceHeader']/@*[local-name()='DateInvoiced']" />
             </profile:simpleContent>
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
@@ -1689,31 +1695,34 @@
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource> 
-    <profile:eventSource profile:eventSourceAddress="ValueCardReconcileRFOInput.terminal.failure" profile:enabled="true">
+   <profile:eventSource profile:eventSourceAddress="ValueCardReconcileRFOInput.terminal.failure" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
                 <profile:eventName profile:literal="EXCEPTION" />
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/@*['OrderNo'=local-name()]" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
                 <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceDetail'=local-name()]/*['InvoiceHeader'=local-name()]/@*['OrderNo'=local-name()]" />
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='InvoiceDetail']/*[local-name()='InvoiceHeader']/@*[local-name()='OrderNo']" />
             </profile:simpleContent>
             <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceDetail'=local-name()]/*['InvoiceHeader'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='InvoiceDetail']/*[local-name()='InvoiceHeader']/@*[local-name()='EnterpriseCode']" />
+            </profile:simpleContent>
+                <profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='InvoiceDetail']/*[local-name()='InvoiceHeader']/@*[local-name()='DateInvoiced']" />
             </profile:simpleContent>
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>   
+    </profile:eventSource> 
     <profile:eventSource profile:eventSourceAddress="ReconcileRequestToS4.terminal.out" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -1730,13 +1739,13 @@
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
-            <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/EnterpriseCode" />
+            <profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-	<profile:eventSource profile:eventSourceAddress="POSTRequestToS4.terminal.out" profile:enabled="true">
+               <profile:eventSource profile:eventSourceAddress="PostReconcileRequestToS4.terminal.out" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
                 <profile:eventName profile:literal="RESPONSE_RECEIVED" />
@@ -1752,11 +1761,88 @@
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
-            <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/EnterpriseCode" />
+            <profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-	<!-- END of Events for APP_OMS_S4_ReconcileRFOCancel -->
-</profile:monitoringProfile>
+	<!-- END of Events for APP_OMS_S4_ReconcileRFOCancel -->	
+	
+	<!-- Events for MF_ESB_S4_ReconcileOrderCreate -->
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS_ESB.RECONCILEORDERCREATE.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/ID" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+         <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Order'=local-name()]/@*['OrderNo'=local-name()]" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['Order'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>	
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS_ESB.RECONCILEORDERCREATE.terminal.catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>																	
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/ID"  />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='Orders']/*[local-name()='Order']/@*[local-name()='OrderNo']" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='Orders']/*[local-name()='Order']/@*[local-name()='EnterpriseCode']" />
+			</profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>	
+	<profile:eventSource profile:eventSourceAddress="QL.IN.OMS_ESB.RECONCILEORDERCREATE.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/ID" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='Orders']/*[local-name()='Order']/@*[local-name()='OrderNo']" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='Orders']/*[local-name()='Order']/@*[local-name()='EnterpriseCode']" />
+			</profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<!-- END of Events for MF_ESB_S4_ReconcileOrderCreate -->
+	
+	
+</profile:monitoringProfile>    

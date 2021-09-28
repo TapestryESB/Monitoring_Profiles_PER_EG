@@ -75,6 +75,9 @@
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Body/*[local-name()='orders']/*[local-name()='order']/@*[local-name()='order-no']" />
             </profile:simpleContent>
+            <profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='orders']/*[local-name()='order']/*[local-name()='order-date']" />
+            </profile:simpleContent>
             <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/Brand" />
             </profile:simpleContent>
@@ -150,6 +153,9 @@
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Body/*[local-name()='orders']/*[local-name()='order']/@*[local-name()='order-no']" />
             </profile:simpleContent>
+            <profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='orders']/*[local-name()='order']/*[local-name()='order-date']" />
+            </profile:simpleContent>
             <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/Brand" />
             </profile:simpleContent>
@@ -178,6 +184,9 @@
         <profile:applicationDataQuery>
         	<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Body/*[local-name()='orders']/*[local-name()='order']/@*[local-name()='order-no']" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='orders']/*[local-name()='order']/*[local-name()='order-date']" />
             </profile:simpleContent>
             <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/Brand" />
@@ -211,6 +220,9 @@
         	<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Body/*[local-name()='orders']/*[local-name()='order']/@*[local-name()='order-no']" />
             </profile:simpleContent>
+            <profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='orders']/*[local-name()='order']/*[local-name()='order-date']" />
+            </profile:simpleContent>
             <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/Brand" />
             </profile:simpleContent>
@@ -243,6 +255,9 @@
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Body/*[local-name()='Order']//@*[local-name()='OrderNo']" />
             </profile:simpleContent>
+            <profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='Order']/@*[local-name()='OrderDate']" />
+            </profile:simpleContent>
             <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Environment/Variable/Brand"/>
             </profile:simpleContent>
@@ -272,6 +287,9 @@
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Body/*[local-name()='Order']//@*[local-name()='OrderNo']" />
+            </profile:simpleContent>
+            <profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Body/*[local-name()='Order']/@*[local-name()='OrderDate']" />
             </profile:simpleContent>
             <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Environment/Variable/Brand"/>
