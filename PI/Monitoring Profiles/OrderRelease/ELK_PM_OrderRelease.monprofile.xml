@@ -21,6 +21,9 @@
             <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderDate'=local-name()]" />
+            </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -46,6 +49,9 @@
             </profile:simpleContent>
             <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -73,6 +79,9 @@
             <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
+			</profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>   
@@ -94,6 +103,9 @@
             </profile:simpleContent>
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -118,6 +130,9 @@
             </profile:simpleContent>
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -145,6 +160,9 @@
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
+			</profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -171,6 +189,9 @@
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
+			</profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -194,6 +215,9 @@
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
+            </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -216,6 +240,9 @@
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
+			</profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>    
@@ -238,6 +265,9 @@
             </profile:simpleContent>
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -265,6 +295,9 @@
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
+			</profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -291,6 +324,9 @@
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
+			</profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -314,6 +350,9 @@
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
+            </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -336,6 +375,9 @@
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
+			</profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>    
@@ -358,6 +400,9 @@
             </profile:simpleContent>
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -385,6 +430,9 @@
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
+			</profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -411,6 +459,9 @@
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
+			</profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -434,6 +485,9 @@
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
+            </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -456,6 +510,9 @@
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
+			</profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>    
@@ -478,6 +535,9 @@
             </profile:simpleContent>
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -505,6 +565,9 @@
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
+			</profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -531,6 +594,9 @@
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
+			</profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -554,6 +620,9 @@
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
+            </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -576,6 +645,9 @@
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
             </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
+			</profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>

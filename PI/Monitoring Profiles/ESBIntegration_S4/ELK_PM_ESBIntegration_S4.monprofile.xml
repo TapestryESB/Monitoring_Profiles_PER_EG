@@ -340,6 +340,9 @@
             </profile:simpleContent>
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Body/*[local-name()='InvoiceDetail']/*[local-name()='InvoiceHeader']/@*[local-name()='EnterpriseCode']" />
+         </profile:simpleContent>
+		 <profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+            <profile:valueQuery profile:queryText="$Body/*[local-name()='InvoiceDetail']/*[local-name()='InvoiceHeader']/@*[local-name()='DateInvoiced']"/>
 			</profile:simpleContent>	
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -437,6 +440,9 @@
             </profile:simpleContent>
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/Brand" />
+         </profile:simpleContent>
+         <profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+            <profile:valueQuery profile:queryText="$Body/*[local-name()='InvoiceDetail']/*[local-name()='InvoiceHeader']/@*[local-name()='DateInvoiced']" />
 			</profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -510,6 +516,9 @@
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Body/*[local-name()='InvoiceDetail']/*[local-name()='InvoiceHeader']/@*[local-name()='EnterpriseCode']" />
 			</profile:simpleContent>
+         <profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+            <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
+         </profile:simpleContent>
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
@@ -1186,6 +1195,9 @@
 			<profile:simpleContent profile:name="Brand">
                 <profile:valueQuery profile:queryText="$Environment/Variables/Brand" />
             </profile:simpleContent>
+         <profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+            <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
+         </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -1207,6 +1219,9 @@
             </profile:simpleContent>
 			<profile:simpleContent profile:name="Brand">
                 <profile:valueQuery profile:queryText="$Environment/Variables/Brand" />
+         </profile:simpleContent>
+		 <profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+            <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -1544,6 +1559,9 @@
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Environment/Variables/OrderNo" />
+         </profile:simpleContent>
+         <profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+            <profile:valueQuery profile:queryText="$Environment/Variables/OrderDate" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -1564,6 +1582,9 @@
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Environment/Variables/OrderNo" />
             </profile:simpleContent>
+         <profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+            <profile:valueQuery profile:queryText="$Environment/Variables/OrderDate" />
+         </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
