@@ -95,7 +95,7 @@
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText ="$Body/JSON/Data/messageID" /> 
+                <profile:valueQuery profile:queryText ="$Root/JSON/Data/messageID" /> 
             </profile:simpleContent>
 		</profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />

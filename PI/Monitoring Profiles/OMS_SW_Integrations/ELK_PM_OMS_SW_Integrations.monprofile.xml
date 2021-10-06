@@ -111,8 +111,14 @@
 			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
 				<profile:valueQuery profile:queryText="$Environment/Variables/OrderNo" />
 			</profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/XMLNSC/InvoiceBridge/Invoice/InvoiceHeaderFields/DateCreated" /> 
+			</profile:simpleContent>
 			<profile:simpleContent profile:name="Warehouse" profile:dataType="string" profile:targetNamespace="">
 				<profile:valueQuery profile:queryText="$Root/XMLNSC/InvoiceBridge/Invoice/Warehouse" /> 
+			</profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Environment/Variables/OrderDate" />
 			</profile:simpleContent>
 			<profile:simpleContent profile:name="MessgeType" profile:dataType="string" profile:targetNamespace="">
 				<profile:valueQuery profile:queryText="$Environment/Variables/MessgeType" />
@@ -138,8 +144,14 @@
 			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
 				<profile:valueQuery profile:queryText="$Environment/Variables/OrderNo" />
 			</profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Environment/Variables/OrderDate" />
+			</profile:simpleContent>
 			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
 				<profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['ShipmentLines'=local-name()]/@*['OrderNo'=local-name()]" /> 
+			</profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Environment/Variables/OrderDate" />
 			</profile:simpleContent>
 			<profile:simpleContent profile:name="MessgeType" profile:dataType="string" profile:targetNamespace="">
 				<profile:valueQuery profile:queryText="$Environment/Variables/MessgeType" />
@@ -162,8 +174,14 @@
 			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
 				<profile:valueQuery profile:queryText="$Environment/Variables/OrderNo" />
 			</profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Environment/Variables/OrderDate" />
+			</profile:simpleContent>
 		<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
 				<profile:valueQuery profile:queryText="$Root/XMLNSC/*['Shipment'=local-name()]/*['ShipmentLines'=local-name()]/@*['OrderNo'=local-name()]" /> 
+			</profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Environment/Variables/OrderDate" />
 			</profile:simpleContent>
 			<profile:simpleContent profile:name="MessgeType" profile:dataType="string" profile:targetNamespace="">
 				<profile:valueQuery profile:queryText="$Environment/Variables/MessgeType" />
