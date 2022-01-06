@@ -1,0 +1,1525 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<profile:monitoringProfile
+    xmlns:profile="http://www.ibm.com/xmlns/monitoring/11/profile" profile:version="2.0">
+	
+	<!-- APP_CHToSAP_OrderCreate Events Start -->
+	<profile:eventSource profile:eventSourceAddress="Load MP Configurations.Terminal.In" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/MP" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="CommHub File.Terminal.Failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/MP" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="CommHub File.Terminal.Catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/MP" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Prepare OrderCreate Request.Terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+                <profile:valueQuery profile:queryText="$Environment/ELK/OrderID" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/Channel" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="SAP Create Order.Terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+                <profile:valueQuery profile:queryText="$Environment/ELK/OrderID" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/Channel" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="SAP Create Order.Terminal.Failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+                <profile:valueQuery profile:queryText="$Environment/ELK/OrderID" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/Channel" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<!-- APP_CHToSAP_OrderCreate Events End -->
+	
+	<!-- OrderManagementService/Inventory Service Common Events Start -->
+	<profile:eventSource profile:eventSourceAddress="InventoryServiceInputCatchHandler.Prepare Error Response.Terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/SF" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="InventoryServiceInputFailureHandler.Prepare Error Response.Terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/SF" />
+            </profile:simpleContent>
+        <profile:applicationDataQuery>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="InventoryServiceInputTimeoutHandler.Prepare Error Response.Terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/SF" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="OrderManagementServiceInputCatchHandler.Prepare Error Response.Terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/SF" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="OrderManagementServiceInputFailureHandler.Prepare Error Response.Terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/SF" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="OrderManagementServiceInputTimeoutHandler.Prepare Error Response.Terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/SF" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="HTTP Input.Terminal.Failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/SF" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="HTTP Input.Terminal.Catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/SF" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="HTTP Input.Terminal.HTTP Timeout" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/SF" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<!-- OrderManagementService/Inventory Service Common Events End -->
+	
+	<!-- OrderManagementService ShipmentConfirmation Events Start -->
+	<profile:eventSource profile:eventSourceAddress="postShipmentConfirm (Implementation).Map OMS Shipment Confirmation Request.Terminal.In" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/SF" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="postShipmentConfirm (Implementation).Map OMS Shipment Confirmation Request.Terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/SF" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="postShipmentConfirm (Implementation).Map OMS Shipment Confirmation Request.Terminal.Out1" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/SF" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderNo">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/Shipment/@OrderNo" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="postShipmentConfirm (Implementation).Map OMS Shipment Confirmation Request.Terminal.Out2" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/SF" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderNo">
+                <profile:valueQuery profile:queryText="$Environment/ErrorPayload/JSON/Data/events/Item/payload/order/consumerOrderNumber" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+    </profile:eventSource>
+	<!-- OrderManagementService ShipmentConfirmation Events End -->
+	
+	<!-- OrderManagementService OrderCancellation Events Start -->
+	<profile:eventSource profile:eventSourceAddress="postOrderCancel (Implementation).Map OMS Order Cancellation Request.Terminal.In" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/SF" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="postOrderCancel (Implementation).Map OMS Order Cancellation Request.Terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/SF" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="postOrderCancel (Implementation).Map OMS Order Cancellation Request.Terminal.Out1" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/SF" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderNo">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/Shipment/@OrderNo" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="postOrderCancel (Implementation).Map OMS Order Cancellation Request.Terminal.Out2" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/SF" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderNo">
+                <profile:valueQuery profile:queryText="$Environment/ErrorPayload/JSON/Data/events/Item/payload/order/consumerOrderNumber" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+    </profile:eventSource>
+	<!-- OrderManagementService OrderCancellation Events End -->
+	
+	<!-- OMSIntegrationApp Events Start -->
+	<profile:eventSource profile:eventSourceAddress="Write QL.OUT.ESB_OMS.SHIPCONFIRM.SUB.AR_DPREQUEST.Terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/Shipment/@OrderNo" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Read QL.OUT.ESB_OMS.ORDER_ROUTE.INPUT.Terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/Shipment/@OrderNo" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Read QL.OUT.ESB_OMS.ORDER_ROUTE.INPUT.Terminal.Catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/Shipment/@OrderNo" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Read QL.OUT.ESB_OMS.SHIPCONFIRM.SUB.AR_DPRESPONSE.Terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+                <profile:valueQuery profile:queryText="$Environment/Variables/SourceRoot/XMLNSC/Shipment/@OrderNo" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>	
+	<profile:eventSource profile:eventSourceAddress="Read QL.OUT.ESB_OMS.SHIPCONFIRM.SUB.AR_DPRESPONSE.Terminal.noMessage" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+                <profile:valueQuery profile:queryText="$Environment/Variables/SourceRoot/XMLNSC/Shipment/@OrderNo" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Read QL.OUT.ESB_OMS.SHIPCONFIRM.SUB.AR_DPRESPONSE.Terminal.Warning" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+                <profile:valueQuery profile:queryText="$Environment/Variables/SourceRoot/XMLNSC/Shipment/@OrderNo" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Write QL.OUT.ESB_OMS.FULLVENTORYSTORE.AR_DPREQUEST.Terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="UniqueID">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/Items/@YantraMessageGroupID | $Root/XMLNSC/EOF/@YantraMessageGroupID" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Read QL.OUT.ESB_OMS.INVENTORY_ROUTE.INPUT.Terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="UniqueID">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/Inventory/detail/Items/@YantraMessageGroupID" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Read QL.OUT.ESB_OMS.INVENTORY_ROUTE.INPUT.Terminal.Catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="UniqueID">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/Inventory/detail/Items/@YantraMessageGroupID" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Read QL.OUT.ESB_OMS.FULLVENTORYSTORE.AR_DPRESPONSE.Terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="UniqueID">
+                <profile:valueQuery profile:queryText="$Environment/Variables/SourceRoot/XMLNSC/Inventory/detail/Items/@YantraMessageGroupID" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>	
+	<profile:eventSource profile:eventSourceAddress="Read QL.OUT.ESB_OMS.FULLVENTORYSTORE.AR_DPRESPONSE.Terminal.noMessage" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="UniqueID">
+                <profile:valueQuery profile:queryText="$Environment/Variables/SourceRoot/XMLNSC/Inventory/detail/Items/@YantraMessageGroupID" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Read QL.OUT.ESB_OMS.FULLVENTORYSTORE.AR_DPRESPONSE.Terminal.Warning" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="UniqueID">
+                <profile:valueQuery profile:queryText="$Environment/Variables/SourceRoot/XMLNSC/Inventory/detail/Items/@YantraMessageGroupID" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<!-- OMSIntegrationApp Events End -->
+	
+	<!-- InventoryService Events Start -->
+	<profile:eventSource profile:eventSourceAddress="postInventoryUpdate (Implementation).Map OMS Inventory Update Request.Terminal.In" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/SF" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="postInventoryUpdate (Implementation).Map OMS Inventory Update Request.Terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/SF" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="postInventoryUpdate (Implementation).Map OMS Inventory Update Request.Terminal.Out1" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/SF" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="UniqueID">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/Inventory/detail/Items/@YantraMessageGroupID | $Root/XMLNSC/Inventory/detail/EOF/@YantraMessageGroupID" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="postInventoryUpdate (Implementation).Map OMS Inventory Update Request.Terminal.Out2" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+			<profile:eventUOW profile:unitOfWork="none" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/SF" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="UniqueID">
+                <profile:valueQuery profile:queryText="$Environment/ErrorPayload/JSON/Data/events/Item/payload/sku" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+    </profile:eventSource>
+	<!-- InventoryService Events End -->
+	
+	<!-- Start of events for APP_SAPToCH_Orders-->
+	<!-- Start of events for MF_SAPToCH_Orders-->
+	<profile:eventSource profile:eventSourceAddress="SAP Input.Terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/MP" />
+            </profile:simpleContent>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="SAP Input.Terminal.Failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/MP" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="SAP Input.Terminal.Catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/MP" />
+            </profile:simpleContent>
+       		<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="PublishTOESB.Terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/MP" />
+            </profile:simpleContent>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<!-- End of events for APP_SAPToCH_Orders-->
+	
+	<!-- Start of events for OrderAcknowledgment-->
+	<profile:eventSource profile:eventSourceAddress="TAPESTRY.ESB.SAP.CH.ACK.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+      <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/MP" />
+            </profile:simpleContent>
+		 </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="TAPESTRY.ESB.SAP.CH.ACK.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		  <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/MP" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		 </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="TAPESTRY.ESB.SAP.CH.ACK.terminal.catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		  <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="EntryType">
+                <profile:valueQuery profile:queryText="$Environment/ELK/MP" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		 </profile:applicationDataQuery>
+       <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Prepare_CommHub_AcknowledgmentRequest.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+         <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/MercentFeed/OrderAcknowledgement/ChannelOrderID" />
+            </profile:simpleContent>
+		 </profile:applicationDataQuery>		
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+		 </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="CommHub_Acknowledgment_DPURL.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Environment/ELK/ChannelOrderID" />
+            </profile:simpleContent>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	 </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="CommHub_Acknowledgment_DPURL.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+				<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+		<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Environment/ELK/ChannelOrderID" />
+            </profile:simpleContent>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+		 </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="CommHub_Acknowledgment_DPURL.terminal.error" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		  <profile:applicationDataQuery>
+				<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+		<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Environment/ELK/ChannelOrderID" />
+            </profile:simpleContent>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	 </profile:eventSource>
+	<!-- END of events for rderAcknowledgment-->
+	 
+	<!-- Start of events for OrderAdjustment-->
+	<profile:eventSource profile:eventSourceAddress="TAPESTRY.ESB.SAP.CH.ADJ.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		 <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Root/DataObject/*[local-name()='SapFshord03Zfshord03']/SAPTransactionID" />
+            </profile:simpleContent>
+		 </profile:applicationDataQuery>
+       <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="TAPESTRY.ESB.SAP.CH.ADJ.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		 <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Root/DataObject/*[local-name()='SapFshord03Zfshord03']/SAPTransactionID" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		 </profile:applicationDataQuery>
+         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="TAPESTRY.ESB.SAP.CH.ADJ.terminal.catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		 <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Root/DataObject/*[local-name()='SapFshord03Zfshord03']/SAPTransactionID" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		 </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Prepare_CommHub_AdjustmentRequest.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		 <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/MercentFeed/OrderAdjustment/ChannelOrderID" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		 </profile:applicationDataQuery>
+         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+		 </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Adjustment_DPURL.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Environment/ELK/ChannelOrderID" />
+            </profile:simpleContent>
+         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	 </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Adjustment_DPURL.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+				<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+		<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Environment/ELK/ChannelOrderID" />
+            </profile:simpleContent>
+         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+		 </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Adjustment_DPURL.terminal.error" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+				<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+		<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Environment/ELK/ChannelOrderID" />
+            </profile:simpleContent>
+         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	 </profile:eventSource>
+	<!-- END of events for OrderAdjustment-->
+	
+	<!-- Start of events for SAPToCH_OrderFulfilment-->
+	<profile:eventSource profile:eventSourceAddress="TAPESTRY.ESB.SAP.CH.FUL.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		 <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Root/DataObject/*[local-name()='SapFshspm01ZoeEdi856CustomerAsn']/SAPTransactionID" />
+            </profile:simpleContent>
+		 </profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="TAPESTRY.ESB.SAP.CH.FUL.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		 <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Root/DataObject/*[local-name()='SapFshspm01ZoeEdi856CustomerAsn']/SAPTransactionID" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		 </profile:applicationDataQuery>
+         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="TAPESTRY.ESB.SAP.CH.FUL.terminal.catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		 <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Root/DataObject/*[local-name()='SapFshspm01ZoeEdi856CustomerAsn']/SAPTransactionID" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		 </profile:applicationDataQuery>
+         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Prepare_CommHub_FulfilmentRequest.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		 <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/MercentFeed/OrderFulfillment/ChannelOrderID" />
+            </profile:simpleContent>
+		 </profile:applicationDataQuery>
+         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+		 </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="CommHub_FulfilmentDPURL.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Environment/ELK/ChannelOrderID" />
+            </profile:simpleContent>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	 </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="CommHub_FulfilmentDPURL.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Environment/ELK/ChannelOrderID" />
+            </profile:simpleContent>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+		 </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="CommHub_FulfilmentDPURL.terminal.error" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+				<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+		<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Environment/ELK/ChannelOrderID" />
+            </profile:simpleContent>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	 </profile:eventSource>
+	<!-- END of events for SAPToCH_OrderFulfilment-->
+	 
+	<!-- Start of events for SAPToCH_OrderReturns-->
+	<profile:eventSource profile:eventSourceAddress="TAPESTRY.ESB.SAP.CH.RTN.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		  <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Root/DataObject/*[local-name()='SapFshinv01ZoeInvoicIdoc']/SAPTransactionID" />
+            </profile:simpleContent>
+		 </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="TAPESTRY.ESB.SAP.CH.RTN.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		  <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Root/DataObject/*[local-name()='SapFshinv01ZoeInvoicIdoc']/SAPTransactionID" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		 </profile:applicationDataQuery>
+         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="TAPESTRY.ESB.SAP.CH.RTN.terminal.catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		  <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Root/DataObject/*[local-name()='SapFshinv01ZoeInvoicIdoc']/SAPTransactionID" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		 </profile:applicationDataQuery>
+         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Prepare_CommHub_ReturnsRequest.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		  <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/MercentFeed/OrderAdjustment/ChannelOrderID" />
+            </profile:simpleContent>
+		 </profile:applicationDataQuery>
+         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+		 </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Returns_DPURL.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Environment/ELK/ChannelOrderID" />
+            </profile:simpleContent>
+         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	 </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Returns_DPURL.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+				<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+		<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Environment/ELK/ChannelOrderID" />
+            </profile:simpleContent>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+		 </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Returns_DPURL.terminal.error" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+		<profile:applicationDataQuery>
+				<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+		<profile:simpleContent profile:name="OrderNo">
+               <profile:valueQuery profile:queryText="$Environment/ELK/ChannelOrderID" />
+            </profile:simpleContent>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+	 </profile:eventSource>
+	<!-- END of events for SAPToCH_OrderReturns-->	
+	
+</profile:monitoringProfile>
