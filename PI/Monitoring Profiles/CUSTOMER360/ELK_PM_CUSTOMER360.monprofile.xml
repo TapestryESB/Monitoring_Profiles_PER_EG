@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <profile:monitoringProfile xmlns:profile="http://www.ibm.com/xmlns/monitoring/11/profile" profile:version="2.0">
-	
-	<!-- Events for MF_LSS_SFMC_TriggerEmail.msgflow -->
-	
 	<profile:eventSource profile:eventSourceAddress="HTTP Input.terminal.out" profile:enabled="true">
 		<profile:eventPointDataQuery>
 			<profile:eventIdentity>
@@ -10,50 +7,46 @@
 			</profile:eventIdentity>
 			<profile:eventCorrelation>
 				<profile:localTransactionId profile:sourceOfId="automatic" />
-				<profile:parentTransactionId profile:sourceOfId="automatic" />
-				<profile:globalTransactionId profile:sourceOfId="automatic" />
 			</profile:eventCorrelation>
 			<profile:eventFilter profile:queryText="true()" />
 		</profile:eventPointDataQuery>
 		<profile:applicationDataQuery>
-			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-				<profile:valueQuery profile:queryText="$Body/JSON/Data/EmailPayload/Data/EMAILADDRESS" />
+			<profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/JSON/Data/GetCustomerRequest/Item/customerid | $Root/JSON/Data/UpsertMembershipRequest/Item/CustomerID"/>
+				<!-- concat( $Root/JSON/Data/CustomerLookupRequest/Item/lastname ,'_', $Root/JSON/Data/CustomerLookupRequest/Item/retailassignstorenbr ,'_', $Root/JSON/Data/CustomerLookupRequest/Item/retailassignassociate)" /> -->
 			</profile:simpleContent>
+			<!--<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Body/JSON/Data/EmailPayload/Data/EMAILADDRESS"/>
+			</profile:simpleContent>-->
 		</profile:applicationDataQuery>
 		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
 	</profile:eventSource>
-	
-	
-   <profile:eventSource profile:eventSourceAddress="HTTP Input.terminal.catch" profile:enabled="true">
+	<profile:eventSource profile:eventSourceAddress="HTTP Input.terminal.catch" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
                 <profile:eventName profile:literal="EXCEPTION" />
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-		
-		
         	<!--  MF_LSS_SFMC_TriggerEmail.msgflow -->
-
-			<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+				<profile:valueQuery profile:queryText="$Root/JSON/Data/GetCustomerRequest/Item/customerid | $Root/JSON/Data/UpsertMembershipRequest/Item/CustomerID"/>
+			</profile:simpleContent>	
+			<!--<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
 				<profile:valueQuery profile:queryText="$Message/JSON/Data/EmailPayload/Data/EMAILADDRESS" />
 			</profile:simpleContent>
 			<profile:simpleContent profile:name="MembershipID" profile:dataType="string" profile:targetNamespace="">
 				<profile:valueQuery profile:queryText="$Message/JSON/Data/EmailPayload/Data/MEMBERSHIP_ID" />
-			</profile:simpleContent>
-			
+			</profile:simpleContent>-->
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
         </profile:applicationDataQuery>
     </profile:eventSource>
-    
     <profile:eventSource profile:eventSourceAddress="HTTP Input.terminal.failure" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -61,31 +54,26 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-		
 		<!--  MF_LSS_SFMC_TriggerEmail  -->
-        	<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+		   <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/JSON/Data/GetCustomerRequest/Item/customerid | $Root/JSON/Data/UpsertMembershipRequest/Item/CustomerID"/>
+            </profile:simpleContent>
+        	<!--<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Message/JSON/Data/EmailPayload/Data/EMAILADDRESS" />
             </profile:simpleContent>
             <profile:simpleContent profile:name="MembershipID" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Message/JSON/Data/EmailPayload/Data/MEMBERSHIP_ID" />
-            </profile:simpleContent>
-			
-			
-			
-			
+            </profile:simpleContent>-->
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-    
 	<profile:eventSource profile:eventSourceAddress="HTTP Input.terminal.timeout" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -93,29 +81,26 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-		
 		<!--  MF_LSS_SFMC_TriggerEmail -->
-        	<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/JSON/Data/GetCustomerRequest/Item/customerid | $Root/JSON/Data/UpsertMembershipRequest/Item/CustomerID"/>
+            </profile:simpleContent>
+        	<!--<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Message/JSON/Data/EmailPayload/Data/EMAILADDRESS" />
             </profile:simpleContent>
             <profile:simpleContent profile:name="MembershipID" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Message/JSON/Data/EmailPayload/Data/MEMBERSHIP_ID" />
-            </profile:simpleContent>
-			
-			
+            </profile:simpleContent>-->
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-	
     <profile:eventSource profile:eventSourceAddress="EmailReq.terminal.out" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -148,23 +133,13 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-		
-		
-		<!-- MF_LSS_SFMC_TriggerEmail  -->
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Email" />
+		        	<profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/MQRFH2/usr/BusinessID | $Environment/CustomerId "  />
             </profile:simpleContent>
-			<profile:simpleContent profile:name="MembershipID" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/MEMBERSHIP_ID" />
-            </profile:simpleContent>
-			
-		<!--    -->
 		<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Environment/Email" />
             </profile:simpleContent>
@@ -176,6 +151,49 @@
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
 	
+	 <profile:eventSource profile:eventSourceAddress="MQ.terminal.Warning" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+        	<profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+    </profile:eventSource>
+    
+    <profile:eventSource profile:eventSourceAddress="MQ Get.terminal.Failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+        	 <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/MQRFH2/usr/BusinessID | $Environment/CustomerId " />
+            </profile:simpleContent>
+
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>  
+ 
+	
 	<profile:eventSource profile:eventSourceAddress="HTTP Reply.terminal.in" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -183,18 +201,19 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/JSON/Data/GetCustomerRequest/customerid  |$Root/JSON/Data/CustomerLookupRequest/Item/CUSTOMER_ID | $Environment/Variables/CustomerId | $Environment/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+           <!-- <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Body/*[local-name()='Order']//@*[local-name()='OrderNo']" />
             </profile:simpleContent>
             <profile:simpleContent profile:name="BrandMapping" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BrandMapping" />
-            </profile:simpleContent>
+            </profile:simpleContent>-->
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource> 
@@ -203,7 +222,7 @@
 
  
 
-    <profile:eventSource profile:eventSourceAddress="C360Request.terminal.out" profile:enabled="true">
+    <!--<profile:eventSource profile:eventSourceAddress="C360Request.terminal.out" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
                 <profile:eventName profile:literal="REQUEST_SENT" />
@@ -221,7 +240,7 @@
             </profile:simpleContent>
             </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
+    </profile:eventSource>-->
   
     <profile:eventSource profile:eventSourceAddress="HTTP Request.terminal.out" profile:enabled="true">
         <profile:eventPointDataQuery>
@@ -230,19 +249,19 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
 				<profile:localTransactionId profile:sourceOfId="automatic" />
-				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$automatic" />
-				<profile:globalTransactionId profile:sourceOfId="query" profile:queryText="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Email" />
-            </profile:simpleContent>
+			<profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/JSON/Data/GetCustomerRequest/customerid  |$Root/JSON/Data/CustomerLookupRequest/Item/CUSTOMER_ID | $Environment/CustomerId  | $Environment/Variables/CustomerId | $Environment/MQRFH2/usr/BusinessID" />
+           </profile:simpleContent>
+            <!--<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Email"  />
+            </profile:simpleContent>-->
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-  
     <profile:eventSource profile:eventSourceAddress="HTTP Request.terminal.error" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -250,24 +269,25 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
 				<profile:localTransactionId profile:sourceOfId="automatic" />
-				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$automatic" />
-				<profile:globalTransactionId profile:sourceOfId="query" profile:queryText="automatic" />
+				<!-- <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$automatic" />
+				<profile:globalTransactionId profile:sourceOfId="query" profile:queryText="automatic" /> -->
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+			<profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/JSON/Data/GetCustomerRequest/customerid  |$Root/JSON/Data/CustomerLookupRequest/Item/CUSTOMER_ID | $Environment/CustomerId  | $Environment/Variables/CustomerId | $Environment/MQRFH2/usr/BusinessID" />
+           </profile:simpleContent>
+            <!--<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Environment/Email" />
-            </profile:simpleContent>
+            </profile:simpleContent>-->
 			<profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-  
-  
-   <profile:eventSource profile:eventSourceAddress="C360Response.terminal.out" profile:enabled="true">
+  <!-- <profile:eventSource profile:eventSourceAddress="C360Response.terminal.out" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
                 <profile:eventName profile:literal="RESPONSE_SENT" />
@@ -285,8 +305,7 @@
             </profile:simpleContent>
             </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-  
+    </profile:eventSource>-->
   <profile:eventSource profile:eventSourceAddress="Flow Order.terminal.second" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -294,56 +313,56 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Email" />
+			<profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
+            <!--<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Email" />
+            </profile:simpleContent>-->
             </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
- 
-	
-	 <profile:eventSource profile:eventSourceAddress="QL.IN.ESB_SFCC.REGISTERCUSTOMER.terminal.in" profile:enabled="true">
+	<profile:eventSource profile:eventSourceAddress="QL.IN.ESB_SFCC.REGISTERCUSTOMER.terminal.in" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
                 <profile:eventName profile:literal="REQUEST_SENT" />
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Environment/Email"  />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Email" />
+			<profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
+            <!--<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Email" />
+            </profile:simpleContent>-->
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
- 
- 	 <profile:eventSource profile:eventSourceAddress="DifferentSource.terminal.in" profile:enabled="true">
+	</profile:eventSource>
+ 	<profile:eventSource profile:eventSourceAddress="DifferentSource.terminal.in" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
                 <profile:eventName profile:literal="REQUEST_SENT" />
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic"  />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Email" />
+			<profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
+            <!--<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Email" />
+            </profile:simpleContent>-->
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -358,14 +377,12 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic"  />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Email" />
+            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -378,14 +395,12 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-        	<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Email" />
+        	<profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
@@ -400,15 +415,14 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-        	<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Email" />
+        	 <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
+
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
@@ -416,131 +430,24 @@
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>  
  
-    <profile:eventSource profile:eventSourceAddress="SFCCRequest.terminal.out2" profile:enabled="true">
+    <profile:eventSource profile:eventSourceAddress="MQ Output.terminal.in" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
                 <profile:eventName profile:literal="REQUEST_SENT" />
             </profile:eventIdentity>
             <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/EmailEmail" />
-				
-            </profile:simpleContent>
-        </profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
- <!-- 
-   <profile:eventSource profile:eventSourceAddress="HTTP Request.terminal.in" profile:enabled="true">
-        <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="REQUEST_RECEIVED" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic"  />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Email" />
-            </profile:simpleContent>
-        </profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-
-    <profile:eventSource profile:eventSourceAddress="HTTP Request.terminal.error" profile:enabled="true">
-        <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="EXCEPTION" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-                <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Email" />
-            </profile:simpleContent>
-            <profile:complexContent profile:name="Exception">
-                <profile:payloadQuery profile:queryText="$ExceptionList" />
-            </profile:complexContent>
-        </profile:applicationDataQuery>
-    </profile:eventSource>
-    
-    <profile:eventSource profile:eventSourceAddress="HTTP Request.terminal.failure" profile:enabled="true">
-        <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="EXCEPTION" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-        	<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Email" />
-            </profile:simpleContent>
-            <profile:complexContent profile:name="Exception">
-                <profile:payloadQuery profile:queryText="$ExceptionList" />
-            </profile:complexContent>
-        </profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
- -->
-    <profile:eventSource profile:eventSourceAddress="MQ Output.terminal.in" profile:enabled="true">
-        <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="REQUEST_RECEIVED" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
 				<profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Email" />
+            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/MQRFH2/usr/BusinessID | $Environment/CustomerId " />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
- 
-     <profile:eventSource profile:eventSourceAddress="SFCCResponse.terminal.in" profile:enabled="true">
-        <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="REQUEST_RECEIVED" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Email" />
-            </profile:simpleContent>
-        </profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
+	
  
    <profile:eventSource profile:eventSourceAddress="QL.IN.ESB_SFMC.WELCOMEEMAIL.terminal.in" profile:enabled="true">
         <profile:eventPointDataQuery>
@@ -549,14 +456,12 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic"  />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Email" />
+            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/MQRFH2/usr/BusinessID | $Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
          </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -571,14 +476,12 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic"  />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Email" />
+             <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/MQRFH2/usr/BusinessID | $Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -591,14 +494,12 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-        	<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Email" />
+        	 <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/MQRFH2/usr/BusinessID | $Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
@@ -613,14 +514,53 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
+           </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+        	 <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/MQRFH2/usr/BusinessID | $Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource> 
+	
+  <profile:eventSource profile:eventSourceAddress="QL.IN.POS_C360.UPSERT.LOG.terminal.catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-        	<profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Email" />
+        	 <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/MQRFH2/usr/BusinessID |$Root/MQRFH2/usr/BusinessID " />
+            </profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+    </profile:eventSource>
+    
+    <profile:eventSource profile:eventSourceAddress="QL.IN.POS_C360.UPSERT.LOG.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+           </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+        	 <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/MQRFH2/usr/BusinessID | $Root/MQRFH2/usr/BusinessID" />
             </profile:simpleContent>
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
@@ -628,7 +568,7 @@
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>  
- 
+
      <profile:eventSource profile:eventSourceAddress="EmailRequest.terminal.out" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -649,26 +589,45 @@
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
  
-  <profile:eventSource profile:eventSourceAddress="MQ Get.terminal.in" profile:enabled="true">
+ 
+
+	   <profile:eventSource profile:eventSourceAddress="RegisterCustomerSFCC_Request.terminal.in" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
-                <profile:eventName profile:literal="RESPONSE_SENT" />
+                <profile:eventName profile:literal="REQUEST_SENT" />
             </profile:eventIdentity>
             <profile:eventCorrelation>
-				<profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />
+                <profile:localTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Email" />
+            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/MQRFH2/usr/BusinessID | $Root/MQRFH2/usr/BusinessID  " />
             </profile:simpleContent>
-        </profile:applicationDataQuery>
+         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
 
+ 
+ <!-- Events start for MF_ESBToSFMC_WelcomeEmail.msgflow -->
+    <profile:eventSource profile:eventSourceAddress="RegisterCustomerSFCC_Request.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/MQRFH2/usr/BusinessID | $Root/MQRFH2/usr/BusinessID  " />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>	
  
     <profile:eventSource profile:eventSourceAddress="EmailResponse.terminal.in" profile:enabled="true">
         <profile:eventPointDataQuery>
@@ -690,7 +649,7 @@
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
  
-		<!--CustomerApi-->
+	<!-- APP_TULIP_C360_Create Customer / APP_TULIP_C360_UpdateCustomer / APP_C360_TULIP_PublishCustomer Start-->
 	<profile:eventSource profile:eventSourceAddress="Validate CCA Request.terminal.in" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -706,12 +665,6 @@
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/JSON/Data/CreateCustomerRequest/Item/CustomerId" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/CreateCustomerRequest/Item/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/CreateCustomerRequest/Item/StoreNum" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -732,12 +685,6 @@
             <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/CustomerId" />
             </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/StoreNum" />
-            </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -757,64 +704,8 @@
             <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/CustomerId" />
             </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/StoreNum" />
-            </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-	<profile:eventSource profile:eventSourceAddress="Prepare CCA Response.terminal.Out" profile:enabled="true">
-        <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="RESPONSE_SENT" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-               <!-- <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />-->
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/CustomerId" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/StoreNum" />
-            </profile:simpleContent>
-        </profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-	<profile:eventSource profile:eventSourceAddress="Prepare CCA Response CH SW.terminal.Out" profile:enabled="true">
-        <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="RESPONSE_SENT" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-             <!--   <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />-->
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/CustomerId" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/StoreNum" />
-            </profile:simpleContent>
-        </profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="all" profile:encoding="base64Binary" />
     </profile:eventSource>
 	<profile:eventSource profile:eventSourceAddress="CC Input.terminal.Failure" profile:enabled="true">
         <profile:eventPointDataQuery>
@@ -831,12 +722,6 @@
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/JSON/Data/CreateCustomerRequest/Item/CustomerId" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/CreateCustomerRequest/Item/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/CreateCustomerRequest/Item/StoreNum" />
             </profile:simpleContent>
 			<profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
@@ -860,12 +745,6 @@
             <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/JSON/Data/CreateCustomerRequest/Item/CustomerId" />
             </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/CreateCustomerRequest/Item/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/CreateCustomerRequest/Item/StoreNum" />
-            </profile:simpleContent>
 			<profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
@@ -888,12 +767,6 @@
             <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/CustomerId" />
             </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/StoreNum" />
-            </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -912,12 +785,6 @@
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/CustomerId" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/StoreNum" />
             </profile:simpleContent>
 			<profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
@@ -941,62 +808,6 @@
             <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/JSON/Data/UpdateCustomerRequest/Item/CustomerId" />
             </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/UpdateCustomerRequest/Item/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/UpdateCustomerRequest/Item/StoreNum" />
-            </profile:simpleContent>
-        </profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-	<profile:eventSource profile:eventSourceAddress="Prepare UCA Response.terminal.Out" profile:enabled="true">
-        <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="RESPONSE_SENT" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-              <!--  <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />-->
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/CustomerId" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/StoreNum" />
-            </profile:simpleContent>
-        </profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-	<profile:eventSource profile:eventSourceAddress="Prepare UCA Response CH SW.terminal.Out" profile:enabled="true">
-        <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="RESPONSE_SENT" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-              <!--  <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />-->
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/CustomerId" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/StoreNum" />
-            </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -1015,12 +826,6 @@
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/JSON/Data/UpdateCustomerRequest/Item/CustomerId" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/UpdateCustomerRequest/Item/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/UpdateCustomerRequest/Item/StoreNum" />
             </profile:simpleContent>
 			<profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
@@ -1044,19 +849,12 @@
             <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Root/JSON/Data/UpdateCustomerRequest/Item/CustomerId" />
             </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/UpdateCustomerRequest/Item/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/UpdateCustomerRequest/Item/StoreNum" />
-            </profile:simpleContent>
 			<profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-	
 	<profile:eventSource profile:eventSourceAddress="CC Input.terminal.Timeout" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -1079,7 +877,6 @@
 		</profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-	
 	<profile:eventSource profile:eventSourceAddress="UC Input.terminal.Timeout" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -1102,7 +899,45 @@
 		</profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-	<profile:eventSource profile:eventSourceAddress="Prepare CreateCusWS Request.terminal.Out" profile:enabled="true">
+	<profile:eventSource profile:eventSourceAddress="CC Reply.terminal.in" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+               <!-- <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />-->
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/CustomerId" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+<profile:eventSource profile:eventSourceAddress="UC Reply.terminal.in" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+               <!-- <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />-->
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/CustomerId" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Prepare C360 Request.terminal.Out" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
                 <profile:eventName profile:literal="REQUEST_SENT" />
@@ -1118,156 +953,10 @@
             <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/CustomerId" />
             </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/StoreNum" />
-            </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-	
-	<profile:eventSource profile:eventSourceAddress="QL.TULIP.CUSTOMER.CREATECUSTOMER_WS.terminal.Failure" profile:enabled="true">
-        <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="EXCEPTION" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-               <!-- <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />-->
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/CreateCustomerRequest/Item/CustomerId" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/CreateCustomerRequest/Item/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/CreateCustomerRequest/Item/StoreNum" />
-            </profile:simpleContent>
-			<profile:complexContent profile:name="Exception">
-                <profile:payloadQuery profile:queryText="$ExceptionList" />
-            </profile:complexContent>
-        </profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-	
-	<profile:eventSource profile:eventSourceAddress="QL.TULIP.CUSTOMER.CREATECUSTOMER_WS.terminal.Catch" profile:enabled="true">
-        <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="EXCEPTION" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-               <!-- <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />-->
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/CreateCustomerRequest/Item/CustomerId" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/CreateCustomerRequest/Item/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/CreateCustomerRequest/Item/StoreNum" />
-            </profile:simpleContent>
-			<profile:complexContent profile:name="Exception">
-                <profile:payloadQuery profile:queryText="$ExceptionList" />
-            </profile:complexContent>
-        </profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-	
-	<profile:eventSource profile:eventSourceAddress="Prepare UpdateCustomer_Process_WS Request.terminal.Out" profile:enabled="true">
-        <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="REQUEST_SENT" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-               <!-- <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />-->
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/CustomerId" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/StoreNum" />
-            </profile:simpleContent>
-        </profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-	<profile:eventSource profile:eventSourceAddress="CreateCustomerWSResp.terminal.Failure" profile:enabled="true">
-        <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="EXCEPTION" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-              <!--  <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />-->
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/CustomerId" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/StoreNum" />
-            </profile:simpleContent>
-			<profile:complexContent profile:name="Exception">
-                <profile:payloadQuery profile:queryText="$ExceptionList" />
-            </profile:complexContent>
-        </profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-	<profile:eventSource profile:eventSourceAddress="UpdateCustWSResp.terminal.Failure" profile:enabled="true">
-        <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="EXCEPTION" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-              <!--  <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />-->
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/CustomerId" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/StoreNum" />
-            </profile:simpleContent>
-			<profile:complexContent profile:name="Exception">
-                <profile:payloadQuery profile:queryText="$ExceptionList" />
-            </profile:complexContent>
-        </profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-	
+
 	<profile:eventSource profile:eventSourceAddress="C360 Call.terminal.Out" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -1283,12 +972,6 @@
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/CustomerId" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/StoreNum" />
             </profile:simpleContent>
 		</profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -1308,12 +991,6 @@
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/CustomerId" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/StoreNum" />
             </profile:simpleContent>
 			<profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
@@ -1337,79 +1014,12 @@
             <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/CustomerId" />
             </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/Transaction/StoreNum" />
-            </profile:simpleContent>
 			<profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
             </profile:complexContent>
 		</profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-	
-	
-	<profile:eventSource profile:eventSourceAddress="QL.IN.TULIP.CUSTOMER.UPDATECUSTOMER_WS.terminal.Failure" profile:enabled="true">
-        <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="EXCEPTION" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-               <!-- <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />-->
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/CreateCustomerRequest/Item/CustomerId" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/CreateCustomerRequest/Item/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/CreateCustomerRequest/Item/StoreNum" />
-            </profile:simpleContent>
-			<profile:complexContent profile:name="Exception">
-                <profile:payloadQuery profile:queryText="$ExceptionList" />
-            </profile:complexContent>
-        </profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-	
-	<profile:eventSource profile:eventSourceAddress="QL.IN.TULIP.CUSTOMER.UPDATECUSTOMER_WS.terminal.Catch" profile:enabled="true">
-        <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="EXCEPTION" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-              <!--  <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />-->
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/CreateCustomerRequest/Item/CustomerId" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/CreateCustomerRequest/Item/Brand" />
-            </profile:simpleContent>
-			<profile:simpleContent profile:name="StoreNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/CreateCustomerRequest/Item/StoreNum" />
-            </profile:simpleContent>
-			<profile:complexContent profile:name="Exception">
-                <profile:payloadQuery profile:queryText="$ExceptionList" />
-            </profile:complexContent>
-        </profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-	
-
+    </profile:eventSource>	
 	<profile:eventSource profile:eventSourceAddress="RequestFromC360.terminal.Out" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -1509,12 +1119,11 @@
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/CustomerId"/>
+                <profile:valueQuery profile:queryText="$Environment/Variables/CustomerId"/>
             </profile:simpleContent>
 		</profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-
 	<profile:eventSource profile:eventSourceAddress="QL.IN.TULIP.PUBCUST.TULIPRESPONSE.terminal.Failure" profile:enabled="true">
        <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -1558,8 +1167,7 @@
             </profile:complexContent>
 		</profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-	
+    </profile:eventSource>	
 	<profile:eventSource profile:eventSourceAddress="QL.IN.TULIP.PUBLISHCUSTOMER.terminal.Failure" profile:enabled="true">
        <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -1604,7 +1212,6 @@
 		</profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>	
-
 	<profile:eventSource profile:eventSourceAddress="QL.IN.TULIP.PUBCUST.GETCUSTRESPONSE.terminal.Failure" profile:enabled="true">
        <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -1648,8 +1255,7 @@
             </profile:complexContent>
 		</profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-	
+    </profile:eventSource>	
 	<profile:eventSource profile:eventSourceAddress="SF_PostRequestToOMS.CreateOMSRequestMsg.terminal.Out" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
@@ -1706,6 +1312,23 @@
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Environment/Variables/OriginalRFH2/usr/CustomerId" />
+            </profile:simpleContent>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.OUT.TULIP.PUBCUSTOMER.GETMSG.terminal.Warning" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/JSON/Data/externalId" />
             </profile:simpleContent>
 		</profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -1773,127 +1396,331 @@
 		</profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-	
-	<profile:eventSource profile:eventSourceAddress="postGetTransactions (Implementation).Get Cust Trans Details.terminal.Failure" profile:enabled="true">
-       <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="EXCEPTION" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-              <!--  <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />-->
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/updatedRecords/Item[1]/externalId" />
-            </profile:simpleContent>
-			<profile:complexContent profile:name="Exception">
-                <profile:payloadQuery profile:queryText="$ExceptionList" />
-            </profile:complexContent>
-		</profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-	<profile:eventSource profile:eventSourceAddress="postGetTransactions (Implementation).Get Cust Trans Details.terminal.Error" profile:enabled="true">
-       <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="EXCEPTION" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-              <!--  <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />-->
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/updatedRecords/Item[1]/externalId" />
-            </profile:simpleContent>
-			<profile:complexContent profile:name="Exception">
-                <profile:payloadQuery profile:queryText="$ExceptionList" />
-            </profile:complexContent>
-		</profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-	
-	<profile:eventSource profile:eventSourceAddress="postGetTransactions (Implementation).Get Cust Trans Details.terminal.Out" profile:enabled="true">
-        <profile:eventPointDataQuery>
-            <profile:eventIdentity>
-                <profile:eventName profile:literal="RESPONSE_RECEIVED" />
-            </profile:eventIdentity>
-            <profile:eventCorrelation>
-                <profile:localTransactionId profile:sourceOfId="automatic" />
-               <!-- <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />-->
-            </profile:eventCorrelation>
-            <profile:eventFilter profile:queryText="true()" />
-        </profile:eventPointDataQuery>
-        <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/Item[1]/SC.CUSTOMER_ID" />
-            </profile:simpleContent>
-		</profile:applicationDataQuery>
-        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
-    </profile:eventSource>
-	<profile:eventSource profile:eventSourceAddress="postGetTransactions (Implementation).Get Cust Trans Details.terminal.In" profile:enabled="true">
+	<profile:eventSource profile:eventSourceAddress="SF_ExpRetryPostRequestToOMS.CreateMsgForDP.terminal.Out" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
                 <profile:eventName profile:literal="REQUEST_SENT" />
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-               <!-- <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />-->
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/Item[1]/SC.CUSTOMER_ID" />
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/CustomerId" />
+            </profile:simpleContent>
+			 <profile:simpleContent profile:name="RequestURL" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/ApiUri" />
             </profile:simpleContent>
 		</profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-	<profile:eventSource profile:eventSourceAddress="postGetTransactions (Implementation).Validate Get Cust Trans Request.terminal.In" profile:enabled="true">
+	<profile:eventSource profile:eventSourceAddress="SF_ExpRetryPostRequestToOMS.GetMessageFromDP.terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variables/OriginalRFH2/usr/CustomerId" />
+            </profile:simpleContent>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="SF_ExpRetryPostRequestToOMS.GetMessageFromDP.terminal.noMessage" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variables/OriginalRFH2/usr/CustomerId" />
+            </profile:simpleContent>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="SF_ExpProcessResponse.ProcessResponse.terminal.Out1" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/CustomerId" />
+            </profile:simpleContent>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="ExpRetryInputQ.terminal.Failure" profile:enabled="true">
+       <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/JSON/Data/updatedRecords/Item[1]/externalId" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="ExpRetryInputQ.terminal.Catch" profile:enabled="true">
+       <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/JSON/Data/updatedRecords/Item[1]/externalId" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<!-- APP_TULIP_C360_Create Customer / APP_TULIP_C360_UpdateCustomer / APP_C360_TULIP_PublishCustomer End-->
+	
+	<!-- APP_EDT_C360_GetCustomerTransactionDetails Start -->
+	<profile:eventSource profile:eventSourceAddress="GCT Input.terminal.Failure" profile:enabled="true">
+       <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/JSON/Data/GetCustomerTransactionDetailsRequest/Item[1]/CustomerId | $Environment/Variables/CID" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="GCT Input.terminal.Timeout" profile:enabled="true">
+       <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/JSON/Data/GetCustomerTransactionDetailsRequest/Item[1]/CustomerId | $Environment/Variables/CID" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="GCT Input.terminal.Catch" profile:enabled="true">
+       <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText= "$Root/JSON/Data/GetCustomerTransactionDetailsRequest/Item[1]/CustomerId | $Environment/Variables/CID" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+    <profile:eventSource profile:eventSourceAddress="GCT Input.terminal.Out" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
                 <profile:eventName profile:literal="REQUEST_RECIEVED" />
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-            <!--    <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />-->
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/Item[1]/SC.CUSTOMER_ID" />
+                <profile:valueQuery profile:queryText="$Root/JSON/Data/GetCustomerTransactionDetailsRequest/Item[1]/customerId" />
             </profile:simpleContent>
 		</profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
-	
-	<profile:eventSource profile:eventSourceAddress="postGetTransactions (Implementation).Prepare Get Cust Trans Response.terminal.Out" profile:enabled="true">
+	<profile:eventSource profile:eventSourceAddress="Get Cust Trans Details.terminal.In" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/JSON/Data/GetCustomerTransactionDetailsRequest/Item[1]/CustomerId" />
+            </profile:simpleContent>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Get Cust Trans Details.terminal.Failure" profile:enabled="true">
+       <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/JSON/Data/GetCustomerTransactionDetailsRequest/Item[1]/CustomerId | $Environment/Variables/CID" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Get Cust Trans Details.terminal.Error" profile:enabled="true">
+       <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/JSON/Data/GetCustomerTransactionDetailsRequest/Item[1]/CustomerId | $Environment/Variables/CID" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Get Cust Trans Details.terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/JSON/Data/GetCustomerTransactionDetailsRequest/Item[1]/CustomerId | $Environment/Variables/CID" />
+            </profile:simpleContent>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="GCT Reply.terminal.In" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
                 <profile:eventName profile:literal="RESPONSE_SENT" />
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-             <!--   <profile:parentTransactionId profile:sourceOfId="automatic" />
-                <profile:globalTransactionId profile:sourceOfId="automatic" />-->
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/JSON/Data/Item[1]/SC.CUSTOMER_ID" />
+                <profile:valueQuery profile:queryText="$Environment/Variables/CID" />
             </profile:simpleContent>
 		</profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
+	<!-- APP_EDT_C360_GetCustomerTransactionDetails End -->
+	
+			
+ <!-- Get Customer Details and lookup ELK START -->
+
+	
+	<profile:eventSource profile:eventSourceAddress="HTTP Request.terminal.In" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/JSON/Data/GetCustomerRequest/customerid  | $Root/JSON/Data/CustomerLookupRequest/Item/CUSTOMER_ID | $Environment/CustomerId  | $Environment/Variables/CustomerId | $Environment/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+          </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="HTTP Request.terminal.Failure" profile:enabled="true">
+       <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="CustomerId" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/JSON/Data/GetCustomerRequest/customerid  |$Root/JSON/Data/CustomerLookupRequest/Item/CUSTOMER_ID | $Environment/CustomerId  | $Environment/Variables/CustomerId | $Environment/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	
+ <!-- End Get Customor Details and lookup-->
  </profile:monitoringProfile>
