@@ -2,7 +2,7 @@
 <profile:monitoringProfile xmlns:profile="http://www.ibm.com/xmlns/monitoring/11/profile" profile:version="2.0">
 
 <!-- Events for APP_APTOS_GetInventoryIntegration -->
-	<profile:eventSource profile:eventSourceAddress="HTTP Input.terminal.out" profile:enabled="true">
+	<profile:eventSource profile:eventSourceAddress="HTTPInput.terminal.out" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
                 <profile:eventName profile:literal="REQUEST_RECEIVED" />
@@ -22,7 +22,7 @@
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>  
 	
-    <profile:eventSource profile:eventSourceAddress="HTTP Input.terminal.catch" profile:enabled="true">
+    <profile:eventSource profile:eventSourceAddress="HTTPInput.terminal.catch" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
                 <profile:eventName profile:literal="EXCEPTION" />
@@ -44,7 +44,7 @@
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource> 
-    <profile:eventSource profile:eventSourceAddress="HTTP Input.terminal.failure" profile:enabled="true">
+    <profile:eventSource profile:eventSourceAddress="HTTPInput.terminal.failure" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
                 <profile:eventName profile:literal="EXCEPTION" />
@@ -95,7 +95,7 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Body/JSON/Data/GetInventoryRequest/ProductIDs" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
                 <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
@@ -114,7 +114,7 @@
             </profile:eventIdentity>																	
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Body/JSON/Data/GetInventoryRequest/ProductIDs"  />
+                <profile:parentTransactionId profile:sourceOfId="automatic"  />
                 <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
@@ -136,7 +136,7 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Body/JSON/Data/GetInventoryRequest/ProductIDs" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
                 <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
@@ -184,8 +184,8 @@
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="ProductIDs" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Body/JSON/Data/GetInventoryRequest/ProductIDs" />
+            <profile:simpleContent profile:name="UniqueID" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variables/UniqueId" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -197,14 +197,14 @@
             </profile:eventIdentity>																	
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Body/JSON/Data/GetInventoryRequest/ProductIDs"  />
+                <profile:parentTransactionId profile:sourceOfId="automatic"  />
                 <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="ProductIDs" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Body/JSON/Data/GetInventoryRequest/ProductIDs" />
+            <profile:simpleContent profile:name="UniqueID" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/UniqueId" />
             </profile:simpleContent>
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
@@ -220,14 +220,14 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Body/JSON/Data/GetInventoryRequest/ProductIDs" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
                 <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="ProductIDs" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Body/JSON/Data/GetInventoryRequest/ProductIDs" />
+            <profile:simpleContent profile:name="UniqueID" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/UniqueId" />
             </profile:simpleContent>
             <profile:complexContent profile:name="Exception">
                 <profile:payloadQuery profile:queryText="$ExceptionList" />
@@ -242,14 +242,14 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Body/JSON/Data/GetInventoryRequest/ProductIDs"/>
+                <profile:parentTransactionId profile:sourceOfId="automatic"/>
                 <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="ProductIDs" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Body/JSON/Data/GetInventoryRequest/ProductIDs" />
+            <profile:simpleContent profile:name="UniqueID" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/UniqueId" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -261,14 +261,14 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/XMLNSC/*"/>
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
                 <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="ProductIDs" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/XMLNSC/TPR_POS_GetInventory/UPCs/UPC" />
+            <profile:simpleContent profile:name="UniqueID" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variables/UniqueId" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -286,8 +286,8 @@
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="ProductIDs" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/XMLNSC/TPR_POS_GetInventory/UPCs/UPC" />
+            <profile:simpleContent profile:name="UniqueID" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variables/UniqueId" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -305,8 +305,8 @@
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="ProductIDs" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/XMLNSC/TPR_POS_GetInventory/UPCs/UPC" />
+            <profile:simpleContent profile:name="UniqueID" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variables/UniqueId" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -324,8 +324,8 @@
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="ProductIDs" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Root/XMLNSC/TPR_POS_GetInventory/UPCs/UPC" />
+            <profile:simpleContent profile:name="UniqueID" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variables/UniqueId" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -342,6 +342,11 @@
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="UniqueID" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variables/UniqueId" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
 	<profile:eventSource profile:eventSourceAddress="Group Complete.terminal.out" profile:enabled="true">
@@ -357,6 +362,9 @@
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="UniqueID" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/ComIbmGroupCompleteNode/Group/Context/UniqueId" />
+            </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
@@ -374,8 +382,8 @@
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="ProductID" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Body/JSON/Data/Inventory/ProductID" />
+            <profile:simpleContent profile:name="UniqueID" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/ComIbmGroupCompleteNode/Group/Context/UniqueId" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
@@ -387,18 +395,178 @@
             </profile:eventIdentity>
             <profile:eventCorrelation>
                 <profile:localTransactionId profile:sourceOfId="automatic" />
-                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Body/JSON/Data/Inventory/ProductID"  />
+                <profile:parentTransactionId profile:sourceOfId="automatic"  />
                 <profile:globalTransactionId profile:sourceOfId="automatic" />
             </profile:eventCorrelation>
             <profile:eventFilter profile:queryText="true()" />
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
-            <profile:simpleContent profile:name="ProductID" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Body/JSON/Data/Inventory/ProductID" />
+            <profile:simpleContent profile:name="UniqueID" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variables/UniqueId" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Aggregate Responses.terminal.out1" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic"  />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="UniqueID" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variables/UniqueId" />
+            </profile:simpleContent>
+           <profile:simpleContent profile:name="ReceivedProductIDs" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variables/ReceivedPids" />
+            </profile:simpleContent>
+           <profile:simpleContent profile:name="TimedOutProductIDs" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Variables/NotProcessedPids" />
             </profile:simpleContent>
         </profile:applicationDataQuery>
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
 	<!-- END of Events for APP_APTOS_TO_OMS_ITEMINQUIRY-V1.7 -->
 	
-</profile:monitoringProfile>    
+<!-- START of Events for ProductService_Integration/OrderCreation -->
+	<profile:eventSource profile:eventSourceAddress="HTTP Input.terminal.out" profile:enabled="true">
+          <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+       <profile:applicationDataQuery>
+			<profile:simpleContent profile:name="SoapAction" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/HTTPInputHeader/SoapAction" />
+			</profile:simpleContent>	
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	
+	<profile:eventSource profile:eventSourceAddress="HTTP Input.terminal.catch" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>																	
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic"  />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>           
+			<profile:simpleContent profile:name="SoapAction" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/HTTPInputHeader/SoapAction" />
+			</profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource> 
+	
+	<profile:eventSource profile:eventSourceAddress="HTTP Input.terminal.failure" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic" />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>            
+			<profile:simpleContent profile:name="SoapAction" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/HTTPInputHeader/SoapAction" />
+			</profile:simpleContent>
+            <profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="ConvertToTreeFormat.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic"  />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/Orders/Order/OrderExternalOrderID"/>
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/ClientName" />
+			</profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Filter_FOUND_OMS.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic"/>
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/Orders/Order/OrderExternalOrderID"/>
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/ClientName" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="Filter_FOUND_OMS.terminal.out1" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="automatic"/>
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+            <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/Orders/Order/OrderExternalOrderID"/>
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/ClientName" />
+            </profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+
+	<!-- END of Events for ProductService_Integration/OrderCreation -->
+	
+</profile:monitoringProfile>       
