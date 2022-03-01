@@ -138,6 +138,35 @@
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
     
+	<profile:eventSource profile:eventSourceAddress="LMSCall.terminal.out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+                <profile:localTransactionId profile:sourceOfId="automatic" />
+                <profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/MQRFH2/usr/ID"  />
+                <profile:globalTransactionId profile:sourceOfId="automatic" />
+            </profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+          <profile:applicationDataQuery>         
+              <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+               <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/*['Order'=local-name()]/@*['OrderNo'=local-name()] | $Root/MQRFH2/usr/BusinessID" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/XMLNSC/*['OrderRelease'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+            </profile:simpleContent>
+			<profile:simpleContent profile:name="OrderDate" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Root/MQRFH2/usr/OrderDate" />
+			</profile:simpleContent>
+			<profile:simpleContent profile:name="State" profile:dataType="string" profile:targetNamespace="">
+                <profile:valueQuery profile:queryText="$Environment/Data/StoreType/State" />
+			</profile:simpleContent>
+        </profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	
     <profile:eventSource profile:eventSourceAddress="QL.IN.OMS.ESB.ORDERRELEASE.COACH_NA.terminal.catch" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>

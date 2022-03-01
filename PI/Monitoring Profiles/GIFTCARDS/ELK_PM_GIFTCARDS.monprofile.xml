@@ -102,7 +102,7 @@
     </profile:eventSource>
 	
 	<!-- End of Events for APP_OMS_COHSMART_GCLETTERPRINT -->
-		<!-- Begin of Events for PGC activation to OMS -->
+	<!-- Begin of Events for PGC activation to OMS -->
 	<profile:eventSource profile:eventSourceAddress="QL.OUT.ESB_OMS.SHIPCONFIRM_PGC.SUB.terminal.out" profile:enabled="true">
 		<profile:eventPointDataQuery>
 			<profile:eventIdentity>
