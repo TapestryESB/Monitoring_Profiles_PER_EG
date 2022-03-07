@@ -2149,7 +2149,7 @@
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/orderNo" />
+                <profile:valueQuery profile:queryText="$Environment/Variables/OrderNo" />
             </profile:simpleContent>
 			<profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Environment/Variables/Brand" />
@@ -2158,7 +2158,7 @@
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
 	
-	<profile:eventSource profile:eventSourceAddress="PostRequestToCAR.terminal.out" profile:enabled="true">
+	<profile:eventSource profile:eventSourceAddress="POSTStoreFulfillRequestToCAR.terminal.out" profile:enabled="true">
         <profile:eventPointDataQuery>
             <profile:eventIdentity>
                 <profile:eventName profile:literal="RESPONSE_RECEIVED" />
@@ -2172,7 +2172,7 @@
         </profile:eventPointDataQuery>
         <profile:applicationDataQuery>
             <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
-                <profile:valueQuery profile:queryText="$Environment/Variables/orderNo" />
+                <profile:valueQuery profile:queryText="$Environment/Variables/OrderNo" />
             </profile:simpleContent>
             <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
                 <profile:valueQuery profile:queryText="$Environment/Variables/Brand" />
