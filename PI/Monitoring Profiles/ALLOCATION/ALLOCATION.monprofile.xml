@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<profile:monitoringProfile xmlns:profile="http://www.ibm.com/xmlns/monitoring/11/profile" profile:version="2.0">
+	<!-- Allocation Smart Events Start -->	
+    <profile:eventSource profile:eventSourceAddress="HTTP Input.terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>		
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/JSON/Data/allocationNumber" />
+			</profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="HTTP Reply.terminal.In" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_SENT" />
+            </profile:eventIdentity>
+              <profile:eventCorrelation>		
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Environment/ELK/allocationNumber" />       
+			</profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.OUT.ASMART_SAP.PROCESS_MBGMCR.terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/JSON/Data/allocationNumber" /> 
+			</profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>	
+	<profile:eventSource profile:eventSourceAddress="QL.OUT.ASMART_SAP.PROCESS_WGSREQ.terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/JSON/Data/allocationNumber" /> 
+			</profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+		</profile:applicationDataQuery>
+		<profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>	
+	<profile:eventSource profile:eventSourceAddress="SAP.terminal.In" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="REQUEST_SENT" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Environment/ELK/UniqueId" />
+			</profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>	
+	<profile:eventSource profile:eventSourceAddress="SAP.terminal.Out" profile:enabled="true">
+        <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="RESPONSE_RECEIVED" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>		
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Environment/ELK/UniqueId" />
+			</profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+		</profile:applicationDataQuery>
+        <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="SAP.terminal.Failure" profile:enabled="true">
+       <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>		
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Environment/ELK/UniqueId" />
+			</profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		</profile:applicationDataQuery>
+		 <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+    </profile:eventSource>	
+	<profile:eventSource profile:eventSourceAddress="QL.OUT.ASMART_SAP.PROCESS_WGSREQ.terminal.Failure" profile:enabled="true">
+       <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>		
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/JSON/Data/allocationNumber" /> 
+			</profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		</profile:applicationDataQuery>
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.OUT.ASMART_SAP.PROCESS_MBGMCR.terminal.Failure" profile:enabled="true">
+       <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>		
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/JSON/Data/allocationNumber" /> 	
+			</profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		</profile:applicationDataQuery>
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.OUT.ASMART_SAP.PROCESS_MBGMCR.terminal.Catch" profile:enabled="true">
+       <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>		
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/JSON/Data/allocationNumber" /> 
+			</profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		</profile:applicationDataQuery>
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="QL.OUT.ASMART_SAP.PROCESS_WGSREQ.terminal.Catch" profile:enabled="true">
+       <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>		
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/JSON/Data/allocationNumber" /> 
+			</profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		</profile:applicationDataQuery>
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="HTTP Input.terminal.Timeout" profile:enabled="true">
+       <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/JSON/Data/allocationNumber" />
+			</profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		</profile:applicationDataQuery>
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="HTTP Input.terminal.Catch" profile:enabled="true">
+       <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+             <profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/JSON/Data/allocationNumber" />
+			</profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		</profile:applicationDataQuery>
+    </profile:eventSource>
+	<profile:eventSource profile:eventSourceAddress="HTTP Input.terminal.Failure" profile:enabled="true">
+       <profile:eventPointDataQuery>
+            <profile:eventIdentity>
+                <profile:eventName profile:literal="EXCEPTION" />
+            </profile:eventIdentity>
+            <profile:eventCorrelation>
+				<profile:localTransactionId profile:sourceOfId="automatic" />
+				<profile:parentTransactionId profile:sourceOfId="query" profile:queryText="$Root/JSON/Data/allocationNumber" />
+			</profile:eventCorrelation>
+            <profile:eventFilter profile:queryText="true()" />
+        </profile:eventPointDataQuery>
+        <profile:applicationDataQuery>
+			<profile:complexContent profile:name="Exception">
+                <profile:payloadQuery profile:queryText="$ExceptionList" />
+            </profile:complexContent>
+		</profile:applicationDataQuery>
+    </profile:eventSource>	
+	<!-- Allocation Smart Events End -->
+ </profile:monitoringProfile>
