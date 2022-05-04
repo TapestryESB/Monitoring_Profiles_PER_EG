@@ -2178,6 +2178,74 @@
         <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
     </profile:eventSource>
 	<!-- End of Events for MF_OMSToCAR_CancellationNotification.msgflow -->
+ <!-- Start Events for APP_ESB_S4_MAILCHECK-->
+   <profile:eventSource profile:eventSourceAddress="QL.IN.OMS_S4.MAILCHECK.terminal.out" profile:enabled="true">
+      <profile:eventPointDataQuery>
+         <profile:eventIdentity>
+            <profile:eventName profile:literal="REQUEST_RECEIVED" />
+         </profile:eventIdentity>
+         <profile:eventCorrelation>
+            <profile:localTransactionId profile:sourceOfId="automatic" />
+            <profile:parentTransactionId profile:sourceOfId="automatic" />
+            <profile:globalTransactionId profile:sourceOfId="automatic" />
+         </profile:eventCorrelation>
+         <profile:eventFilter profile:queryText="true()" />
+      </profile:eventPointDataQuery>
+      <profile:applicationDataQuery>
+         <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+            <profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceDetail'=local-name()]/*['InvoiceHeader'=local-name()]/@*['OrderNo'=local-name()]" />
+         </profile:simpleContent>
+         <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+            <profile:valueQuery profile:queryText="$Root/XMLNSC/*['InvoiceDetail'=local-name()]/*['InvoiceHeader'=local-name()]/@*['EnterpriseCode'=local-name()]" />
+         </profile:simpleContent>
+      </profile:applicationDataQuery>
+      <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+   </profile:eventSource>
+<profile:eventSource profile:eventSourceAddress="ESB_S4_MAILCHECK_Mapping.terminal.out" profile:enabled="true">
+      <profile:eventPointDataQuery>
+         <profile:eventIdentity>
+            <profile:eventName profile:literal="REQUEST_SENT" />
+         </profile:eventIdentity>
+         <profile:eventCorrelation>
+            <profile:localTransactionId profile:sourceOfId="automatic" />
+            <profile:parentTransactionId profile:sourceOfId="automatic" />
+            <profile:globalTransactionId profile:sourceOfId="automatic" />
+         </profile:eventCorrelation>
+         <profile:eventFilter profile:queryText="true()" />
+      </profile:eventPointDataQuery>
+      <profile:applicationDataQuery>
+         <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+            <profile:valueQuery profile:queryText="$Environment/Variables/OrderNo" />
+         </profile:simpleContent>
+         <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+            <profile:valueQuery profile:queryText="$Environment/Variables/EnterpriseCode" />
+         </profile:simpleContent>
+      </profile:applicationDataQuery>
+      <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+   </profile:eventSource>
+   <profile:eventSource profile:eventSourceAddress="ESB_S4_MAILCHECK_S4Response.terminal.in" profile:enabled="true">
+      <profile:eventPointDataQuery>
+         <profile:eventIdentity>
+            <profile:eventName profile:literal="RESPONSE_RECEIVED" />
+         </profile:eventIdentity>
+         <profile:eventCorrelation>
+            <profile:localTransactionId profile:sourceOfId="automatic" />
+            <profile:parentTransactionId profile:sourceOfId="automatic" />
+            <profile:globalTransactionId profile:sourceOfId="automatic" />
+         </profile:eventCorrelation>
+         <profile:eventFilter profile:queryText="true()" />
+      </profile:eventPointDataQuery>
+      <profile:applicationDataQuery>
+         <profile:simpleContent profile:name="OrderNo" profile:dataType="string" profile:targetNamespace="">
+            <profile:valueQuery profile:queryText="$Environment/Variables/OrderNo" />
+         </profile:simpleContent>
+         <profile:simpleContent profile:name="Brand" profile:dataType="string" profile:targetNamespace="">
+            <profile:valueQuery profile:queryText="$Environment/Variables/EnterpriseCode" />
+         </profile:simpleContent>
+      </profile:applicationDataQuery>
+      <profile:bitstreamDataQuery profile:bitstreamContent="body" profile:encoding="base64Binary" />
+   </profile:eventSource>
 
+   <!-- END of Events for APP_ESB_S4_MAILCHECK-->
    
 </profile:monitoringProfile>    
